@@ -1,0 +1,91 @@
+.closing-section {
+  box-sizing: border-box;
+}
+
+.closing-layout {
+  gap: 48px;
+  padding-block: 24px;
+}
+
+.closing-eyebrow {
+  font-size: 16px;
+}
+
+.closing-title {
+  max-width: 680px;
+  font-size: clamp(44px, 4.15vw, 64px);
+}
+
+.closing-support,
+.closing-cta,
+.closing-line {
+  font-size: 18px;
+}
+
+.closing-narrative {
+  min-height: 462px;
+}
+
+.closing-propositions {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-rows: repeat(2, minmax(0, 1fr));
+  min-height: 462px;
+}
+
+.closing-proposition {
+  padding: 24px;
+}
+
+.closing-proposition:nth-child(odd) {
+  border-right: 1px solid rgb(255 255 255 / 10%);
+}
+
+.closing-proposition:nth-child(-n + 2) {
+  border-bottom: 1px solid rgb(255 255 255 / 10%);
+}
+
+@media (min-width: 1024px) {
+  .closing-section,
+  .closing-layout {
+    height: calc(100vh - 110px);
+    min-height: 620px;
+  }
+
+  .closing-layout {
+    grid-template-columns: minmax(0, 55fr) minmax(0, 45fr);
+  }
+}
+
+@media (max-width: 1023px) {
+  .closing-layout {
+    gap: 32px;
+    padding-block: 48px;
+  }
+
+  .closing-narrative {
+    min-height: 0;
+  }
+
+  .closing-line {
+    margin-top: 40px;
+  }
+}
+
+@media (max-width: 639px) {
+  .closing-title {
+    font-size: clamp(38px, 11vw, 50px);
+  }
+
+  .closing-propositions {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: none;
+  }
+
+  .closing-proposition:nth-child(odd) {
+    border-right: 0;
+  }
+
+  .closing-proposition:not(:last-child) {
+    border-bottom: 1px solid rgb(255 255 255 / 10%);
+  }
+}

@@ -1,0 +1,171 @@
+.offerings-title {
+  font-size: clamp(40px, 2.75vw, 42px);
+  line-height: 1.02;
+  text-wrap: balance;
+}
+
+.offerings-subtitle {
+  margin-top: 0.375rem;
+}
+
+.offerings-surface {
+  margin-top: 0.75rem;
+}
+
+.offerings-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.offerings-connector,
+.offerings-phase-arrow,
+.offerings-principle-arrow {
+  display: none;
+}
+
+.offerings-phase-header {
+  display: grid;
+  justify-items: center;
+  align-content: start;
+  row-gap: 0.125rem;
+  padding: 0.5rem 0.5rem 0.25rem;
+}
+
+.offerings-phase-number {
+  line-height: 1;
+}
+
+.offerings-phase-title {
+  font-size: 1rem;
+  line-height: 1.05;
+}
+
+.offerings-phase-statement {
+  font-size: 0.8125rem;
+  line-height: 1.08;
+}
+
+.offerings-card-wrap {
+  padding: 0 0.5rem 0.5rem;
+}
+
+.offerings-phase-card {
+  display: flex;
+  min-height: 0;
+  flex-direction: column;
+  padding: 0.625rem;
+}
+
+.offerings-activities {
+  display: grid;
+  gap: 0.375rem;
+  line-height: 1.16;
+}
+
+.offerings-phase-output {
+  margin-top: auto;
+  min-height: 3.875rem;
+}
+
+.offerings-principles {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.offerings-principle {
+  min-height: 5rem;
+}
+
+.offerings-principle + .offerings-principle {
+  border-top: 1px solid rgb(255 255 255 / 15%);
+}
+
+@media (min-width: 48rem) and (max-width: 63.999rem) {
+  .offerings-grid {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    gap: 0.75rem;
+  }
+
+  .offerings-phase {
+    grid-column: span 2 / span 2;
+  }
+
+  .offerings-phase:nth-of-type(4) {
+    grid-column-start: 2;
+  }
+
+  .offerings-principles {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .offerings-principle + .offerings-principle {
+    border-top: 0;
+    border-left: 1px solid rgb(255 255 255 / 15%);
+  }
+}
+
+@media (min-width: 64rem) {
+  .offerings-surface {
+    display: grid;
+    height: 29rem;
+    grid-template-rows: minmax(0, 1fr) 4.375rem;
+    overflow: hidden;
+  }
+
+  .offerings-grid {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 0;
+    padding: 0;
+  }
+
+  .offerings-phase {
+    display: grid;
+    grid-column: span 1 / span 1;
+    grid-column-start: auto;
+    grid-template-rows: 9.125rem minmax(0, 1fr);
+    min-height: 0;
+  }
+
+  .offerings-phase + .offerings-phase {
+    border-left: 1px solid var(--hairline);
+  }
+
+  .offerings-phase-header {
+    min-height: 0;
+  }
+
+  .offerings-phase-card {
+    height: 100%;
+  }
+
+  .offerings-connector,
+  .offerings-phase-arrow {
+    display: block;
+  }
+
+  .offerings-phase-arrow {
+    right: 0;
+  }
+
+  .offerings-principles {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    position: static;
+  }
+
+  .offerings-principle + .offerings-principle {
+    border-top: 0;
+    border-left: 1px solid rgb(255 255 255 / 15%);
+  }
+
+  .offerings-principle {
+    min-height: 0;
+    padding-block: 0.5rem;
+  }
+
+  .offerings-principle p:last-child {
+    margin-top: 0.25rem;
+    font-size: 0.875rem;
+    line-height: 1.15;
+  }
+}
