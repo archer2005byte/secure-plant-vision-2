@@ -17,6 +17,7 @@ import { ClosingCta } from "@/components/site/ClosingCta";
 const title = "Integrated Surveillance & Security Modernization | EY";
 const description =
   "EY advisory for power generation companies: perimeter security, plant surveillance, command-centre design, DPR/RFP support and implementation governance.";
+const publishedUrl = "https://archer2005byte.github.io/secure-plant-vision-2/";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -26,10 +27,10 @@ export const Route = createFileRoute("/")({
       { property: "og:title", content: title },
       { property: "og:description", content: description },
       { property: "og:type", content: "website" },
-      { property: "og:url", content: "/" },
+      { property: "og:url", content: publishedUrl },
       { name: "twitter:card", content: "summary_large_image" },
     ],
-    links: [{ rel: "canonical", href: "/" }],
+    links: [{ rel: "canonical", href: publishedUrl }],
   }),
   component: Index,
 });
