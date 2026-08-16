@@ -38,7 +38,7 @@ export function ClosingCta() {
             Section 11
           </p>
           <h2 className="closing-title mt-4 font-semibold leading-[1.02] text-white">
-            Start with one pilot plant—or one operating cluster.
+            Start with one pilot plant - or one operating cluster.
           </h2>
           <p className="closing-support mt-5 max-w-2xl leading-[1.45] text-white/68">
             A structured assessment will establish the current state, define the target
