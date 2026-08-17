@@ -117,18 +117,22 @@ export function WhyNowWithRails() {
   return (
     <section id="why-now" className="relative h-[calc(100vh-5.75rem)] overflow-hidden bg-ey-cream text-foreground">
       <div className="mx-auto hidden h-full w-full max-w-[112rem] px-4 py-4 xl:block">
-        <header className="mx-auto max-w-[100rem]">
-          <p className="flex items-center gap-3 text-base font-semibold uppercase tracking-[0.22em] text-ey-green-deep">
-            <span aria-hidden className="h-3 w-1.5 shrink-0 rounded-sm bg-ey-yellow" />
-            Section 02
-          </p>
-          <h2 className="text-[2.25rem] font-semibold leading-tight text-ey-green-deep">
-            Why plant security architecture must change now
-          </h2>
-          <p className="mt-1 text-base leading-[1.3] text-muted-foreground">
-            Exposure is widening, plant risk remains uneven, and security performance is becoming measurable.
-          </p>
-        </header>
+        <div className="mx-auto grid max-w-[110rem] grid-cols-[14.25rem_minmax(0,1fr)_14.25rem] gap-3">
+          <div aria-hidden="true" />
+          <header>
+            <p className="flex items-center gap-3 text-base font-semibold uppercase tracking-[0.22em] text-ey-green-deep">
+              <span aria-hidden className="h-3 w-1.5 shrink-0 rounded-sm bg-ey-yellow" />
+              Section 02
+            </p>
+            <h2 className="text-[2.25rem] font-semibold leading-tight text-ey-green-deep">
+              Why plant security architecture must change now
+            </h2>
+            <p className="mt-1 text-base leading-[1.3] text-muted-foreground">
+              Exposure is widening, plant risk remains uneven, and security performance is becoming measurable.
+            </p>
+          </header>
+          <div aria-hidden="true" />
+        </div>
 
         <div className="relative mx-auto mt-3 grid h-[31.5rem] max-w-[110rem] grid-cols-[14.25rem_minmax(0,1fr)_14.25rem] gap-3">
           <aside aria-label="Recent power-sector security incidents" className="h-full rounded-xl border border-hairline bg-white/95 p-2.5 shadow-sm">
