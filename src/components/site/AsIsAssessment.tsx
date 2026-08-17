@@ -12,6 +12,7 @@ type Domain = {
   short: string;
   maturity: number;
   question: string;
+  evidence: string[];
   examine: { title: string; body: string }[];
   reveals: { title: string; body: string }[];
 };
@@ -32,6 +33,7 @@ const domains: Domain[] = [
     short: "Criticality",
     maturity: 2,
     question: "Are protection levels aligned to the consequence and criticality of the assets being protected?",
+    evidence: ["Asset register", "Site / zoning drawings", "Criticality criteria", "Management interviews"],
     examine: [
       {
         title: "Critical assets & security zones",
@@ -65,6 +67,7 @@ const domains: Domain[] = [
     short: "Vulnerabilities",
     maturity: 2,
     question: "Can an adversary reach, observe or attack a critical asset despite the intended security envelope?",
+    evidence: ["Site & utility drawings", "Physical walkdown", "Adjacent-area observation", "Approach-path validation"],
     examine: [
       {
         title: "Site exposure & unconventional approaches",
@@ -98,6 +101,7 @@ const domains: Domain[] = [
     short: "Perimeter",
     maturity: 2,
     question: "Does the physical boundary deter, delay and expose intrusion along the pathways that matter?",
+    evidence: ["Boundary walkdown", "Fence / gate records", "Lighting / night checks", "Intrusion alarm tests"],
     examine: [
       {
         title: "Boundary condition & delay measures",
@@ -131,6 +135,7 @@ const domains: Domain[] = [
     short: "Access",
     maturity: 3,
     question: "Are people, vehicles, contractors and materials controlled from entry through movement inside the plant?",
+    evidence: ["Access logs", "Gate / visitor records", "Movement observation", "Sample access tests"],
     examine: [
       {
         title: "Entry, screening & authorisation",
@@ -164,6 +169,7 @@ const domains: Domain[] = [
     short: "Surveillance",
     maturity: 2,
     question: "Can the plant reliably detect and verify activity across its critical zones and adversary pathways?",
+    evidence: ["Camera inventory", "Coverage walkdown", "Recorded-video review", "Detection / alarm tests"],
     examine: [
       {
         title: "Coverage, visibility & camera fitness",
@@ -197,6 +203,7 @@ const domains: Domain[] = [
     short: "Guarding",
     maturity: 2,
     question: "Can detection produce a timely, disciplined and proportionate physical response?",
+    evidence: ["Deployment rosters", "Post orders", "Patrol observation", "Response-time exercise"],
     examine: [
       {
         title: "Guard deployment, posts & patrols",
@@ -230,6 +237,7 @@ const domains: Domain[] = [
     short: "Command",
     maturity: 2,
     question: "Can the plant convert alarms and observations into coordinated decisions, escalation and incident control?",
+    evidence: ["Incident logs", "Control-room observation", "Escalation SOPs", "Alarm-to-response test"],
     examine: [
       {
         title: "Control-room capability & situational awareness",
@@ -263,6 +271,7 @@ const domains: Domain[] = [
     short: "Integration",
     maturity: 3,
     question: "Can the technical security estate support integrated operations, growth and reliable evidence?",
+    evidence: ["System architecture", "Device / network inventory", "Capacity records", "Integration / failover tests"],
     examine: [
       {
         title: "Platform, network & interoperability",
@@ -296,6 +305,7 @@ const domains: Domain[] = [
     short: "SOPs",
     maturity: 2,
     question: "Do documented procedures reflect the real threats, vulnerabilities and response model of the plant?",
+    evidence: ["SOP review", "Drill records", "Staff interviews", "Tabletop / live exercise"],
     examine: [
       {
         title: "SOPs, escalation & degraded-mode operations",
@@ -329,6 +339,7 @@ const domains: Domain[] = [
     short: "Assurance",
     maturity: 3,
     question: "Can the protection capability be maintained, measured and improved over its operating life?",
+    evidence: ["Maintenance history", "SLA / KPI reports", "Audit / governance records", "Owner / vendor interviews"],
     examine: [
       {
         title: "Maintenance, uptime, spares & SLA discipline",
@@ -355,8 +366,6 @@ const domains: Domain[] = [
     ],
   },
 ];
-
-const evidence = ["Site walkdown", "Drawings & records", "Operator interviews", "Sample testing"] as const;
 
 const CX = 150;
 const CY = 150;
@@ -641,9 +650,9 @@ export function AsIsAssessment() {
 
             <div className="border-t border-white/10 px-4 py-2.5">
               <div className="flex items-center justify-between gap-3">
-                <p className="text-[9px] font-bold uppercase tracking-[0.14em] text-ey-yellow">Assessment evidence</p>
+                <p className="text-[9px] font-bold uppercase tracking-[0.14em] text-ey-yellow">Evidence & tests</p>
                 <div className="flex flex-wrap justify-end gap-1.5">
-                  {evidence.map((item) => (
+                  {active.evidence.map((item) => (
                     <span key={item} className="rounded-full border border-white/15 px-2 py-1 text-[8.5px] font-medium text-white/72">{item}</span>
                   ))}
                 </div>
