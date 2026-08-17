@@ -1,0 +1,84 @@
+name: Preview Why Now branch on GitHub Pages
+
+on:
+  push:
+    branches:
+      - feature/rework-why-now-physical-security
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout production main
+        uses: actions/checkout@v6
+        with:
+          ref: main
+          path: prod
+
+      - name: Checkout preview branch
+        uses: actions/checkout@v6
+        with:
+          ref: feature/rework-why-now-physical-security
+          path: preview
+
+      - name: Setup Node
+        uses: actions/setup-node@v5
+        with:
+          node-version: "22.12.0"
+          cache: npm
+          cache-dependency-path: |
+            prod/package-lock.json
+            preview/package-lock.json
+
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Build production site from main
+        working-directory: prod
+        run: |
+          npm ci
+          npm run build
+
+      - name: Build branch preview
+        working-directory: preview
+        env:
+          VITE_PUBLIC_BASE: /secure-plant-vision-2/previews/why-now/
+        run: |
+          npm ci
+          npm run build
+
+      - name: Assemble production and preview
+        shell: bash
+        run: |
+          mkdir -p site/previews/why-now
+          cp -a prod/dist/client/. site/
+          cp -a preview/dist/client/. site/previews/why-now/
+          touch site/.nojekyll
+          test -f site/index.html
+          test -f site/previews/why-now/index.html
+
+      - name: Upload GitHub Pages artifact
+        uses: actions/upload-pages-artifact@v5
+        with:
+          path: site
+          include-hidden-files: true
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: https://${{ github.repository_owner }}.github.io/secure-plant-vision-2/previews/why-now/
+    steps:
+      - name: Deploy production plus branch preview
+        id: deployment
+        uses: actions/deploy-pages@v5

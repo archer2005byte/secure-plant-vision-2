@@ -1,251 +1,202 @@
 import {
   BarChart3,
+  Building2,
   Camera,
-  CircleGauge,
-  Clock3,
-  Fence,
-  HardDrive,
-  Layers3,
+  CheckCircle2,
+  Cpu,
+  Eye,
+  KeyRound,
   Network,
   RadioTower,
+  Server,
   ShieldCheck,
-  Unplug,
-  Workflow,
-  type LucideIcon,
+  Target,
 } from "lucide-react";
+import establishedPhoto from "@/assets/section3-established.jpg";
+import commandCentrePhoto from "@/assets/section3-command-centre.jpg";
+import brownfieldPhoto from "@/assets/section3-brownfield.jpg";
 
-import { cn } from "@/lib/utils";
-
-type IllustrationProps = { accentColor: string };
-
-function EnterpriseIllustration({ accentColor }: IllustrationProps) {
-  return (
-    <svg viewBox="0 0 320 86" className="h-full w-full text-white/85" aria-hidden="true">
-      <g fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2">
-        <path d="M55 52h52M107 52l24-20M107 52l24 20M183 32h34M183 52h34M183 72h34" opacity=".55" />
-        <circle cx="107" cy="52" r="7" fill={accentColor} stroke={accentColor} />
-        <rect x="16" y="38" width="39" height="28" rx="4" />
-        <path d="M23 66V50l9-6v8l9-6v20M47 38V27h5v11" />
-        <rect x="131" y="20" width="52" height="24" rx="4" />
-        <path d="M138 44V31l9-5v7l9-5v16M174 20V12h4v8" />
-        <rect x="131" y="60" width="52" height="24" rx="4" />
-        <path d="M138 84V71l9-5v7l9-5v16M174 60v-8h4v8" />
-        <rect x="217" y="22" width="86" height="60" rx="8" />
-        <path d="M231 66h58M231 56h58M231 36h23v10h-23zM264 36h25v10h-25z" />
-        <circle cx="238" cy="72" r="2" fill={accentColor} stroke={accentColor} />
-        <circle cx="247" cy="72" r="2" fill={accentColor} stroke={accentColor} />
-      </g>
-    </svg>
-  );
-}
-
-function BrownfieldIllustration({ accentColor }: IllustrationProps) {
-  return (
-    <svg viewBox="0 0 320 86" className="h-full w-full text-white/85" aria-hidden="true">
-      <g fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2">
-        <rect x="12" y="18" width="105" height="64" rx="8" strokeDasharray="5 5" opacity=".7" />
-        <path d="M28 35h34l8 8h31M28 56h18l8-8h30l9 9h12M28 69h52" />
-        <circle cx="28" cy="35" r="4" fill={accentColor} stroke={accentColor} />
-        <circle cx="28" cy="56" r="4" fill={accentColor} stroke={accentColor} />
-        <circle cx="28" cy="69" r="4" fill={accentColor} stroke={accentColor} />
-        <path d="M129 50h54M170 38l13 12-13 12" stroke={accentColor} strokeWidth="3" />
-        <rect x="198" y="12" width="108" height="70" rx="8" />
-        <path d="M215 30h74M215 45h74M215 60h74" opacity=".55" />
-        <circle cx="224" cy="30" r="3" fill={accentColor} stroke={accentColor} />
-        <circle cx="224" cy="45" r="3" fill={accentColor} stroke={accentColor} />
-        <circle cx="224" cy="60" r="3" fill={accentColor} stroke={accentColor} />
-        <path d="M244 30h33M244 45h33M244 60h33" />
-      </g>
-    </svg>
-  );
-}
-
-function RemoteIllustration({ accentColor }: IllustrationProps) {
-  return (
-    <svg viewBox="0 0 320 86" className="h-full w-full text-white/85" aria-hidden="true">
-      <g fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2">
-        <path d="M15 76h290M36 76c16-25 31-35 47-35s30 10 47 35M177 76c13-18 26-26 39-26s26 8 39 26" opacity=".45" />
-        <path d="M108 76V52l12-7v9l13-8v30M139 52V36h6v16" />
-        <path d="M76 76V57M70 57h12M73 63h6M238 76V49M231 49h14M234 56h8" />
-        <path d="M60 59c7-10 15-15 24-15M54 50c9-14 19-21 30-21M251 48c12-14 25-21 39-21M258 58c9-10 19-15 30-15" opacity=".7" />
-        <path d="M177 18h26M186 12l8 6-8 6M172 25l-7 5M208 25l7 5" stroke={accentColor} />
-        <circle cx="84" cy="44" r="3" fill={accentColor} stroke={accentColor} />
-        <circle cx="290" cy="27" r="4" fill={accentColor} stroke={accentColor} />
-        <path d="M145 42c19-13 39-17 60-13" stroke={accentColor} strokeDasharray="5 5" />
-      </g>
-    </svg>
-  );
-}
+const establishedPlants = ["PLANT A", "PLANT B", "PLANT C"] as const;
+const fragmented = [
+  { icon: Camera, label: "Cameras" },
+  { icon: KeyRound, label: "Access Control" },
+  { icon: Server, label: "Local NVR" },
+  { icon: Cpu, label: "Legacy Systems" },
+  { icon: Server, label: "Local Server" },
+] as const;
+const integrated = [
+  { icon: Camera, label: "Unified Surveillance" },
+  { icon: KeyRound, label: "Access Management" },
+  { icon: ShieldCheck, label: "Perimeter Protection" },
+  { icon: Cpu, label: "Analytics & AI" },
+  { icon: RadioTower, label: "Communication Systems" },
+  { icon: Server, label: "Centralised Management" },
+] as const;
 
 const pathways = [
   {
+    number: "01",
     title: "Established multi-site estates",
-    statement: "From installed surveillance to enterprise orchestration",
-    accentColor: "#FFE600",
-    bodyTint: "#FFFCE1",
-    illustration: EnterpriseIllustration,
-    signals: [
-      { text: "Extensive surveillance already in place", icon: Camera },
-      { text: "Site-level systems across mixed OEMs", icon: Network },
-      { text: "Limited enterprise orchestration and analytics", icon: BarChart3 },
+    strap: "STANDARDISE, INTEGRATE, THEN SCALE",
+    bullets: [
+      "Extensive surveillance already deployed across plants",
+      "Site-level systems built over time across multiple OEMs",
+      "Uneven standards, workflows and operating practices across locations",
+      "Limited enterprise-wide visibility, orchestration and analytics",
     ],
-    stages: ["Integrate", "Orchestrate", "Apply analytics"],
-    outcome: "Unified command and analytics-led operations",
-    outcomeIcon: CircleGauge,
+    stages: ["Integrate", "Standardise", "Orchestrate", "Apply analytics"],
+    target: "Enterprise-wide command, common governance and analytics-led security operations.",
   },
   {
+    number: "02",
     title: "Brownfield / standalone estates",
-    statement: "From isolated systems to phased integration",
-    accentColor: "#D97900",
-    bodyTint: "#FFF5E8",
-    illustration: BrownfieldIllustration,
-    signals: [
-      { text: "Standalone, NVR-led deployments", icon: HardDrive },
-      { text: "Uneven coverage and limited interoperability", icon: Unplug },
-      { text: "Investment phased around live operations", icon: Layers3 },
+    strap: "ASSESS, PRIORITISE, THEN MODERNISE",
+    bullets: [
+      "Standalone, NVR-led or partially integrated deployments",
+      "Uneven surveillance coverage and legacy equipment",
+      "Limited interoperability across cameras, access control and other security systems",
+      "Modernisation constrained by live operations, existing infrastructure and phased investment",
     ],
-    stages: ["Assess", "Prioritise", "Modernise in phases"],
-    outcome: "Phased modernisation and integrated security",
-    outcomeIcon: Workflow,
+    stages: ["Assess", "Prioritise", "Integrate", "Modernise in phases"],
+    target: "Integrated security through sequenced, investment-led modernisation.",
   },
-  {
-    title: "Remote / elevated-threat assets",
-    statement: "From limited visibility to detection at depth",
-    accentColor: "#C43B32",
-    bodyTint: "#FFF0EE",
-    illustration: RemoteIllustration,
-    signals: [
-      { text: "Extended, difficult-to-observe perimeters", icon: Fence },
-      { text: "Delayed external reinforcement", icon: Clock3 },
-      { text: "Ground intrusion and low-altitude aerial threats", icon: RadioTower },
-    ],
-    stages: ["Detect at depth", "Verify early", "Coordinate response"],
-    outcome: "Earlier warning and coordinated response",
-    outcomeIcon: ShieldCheck,
-  },
-] satisfies Array<{
-  title: string;
-  statement: string;
-  accentColor: string;
-  bodyTint: string;
-  illustration: (props: IllustrationProps) => React.JSX.Element;
-  signals: Array<{ text: string; icon: LucideIcon }>;
-  stages: string[];
-  outcome: string;
-  outcomeIcon: LucideIcon;
-}>;
+] as const;
 
-type Pathway = (typeof pathways)[number];
-
-function ArchetypeHeader({ pathway, index }: { pathway: Pathway; index: number }) {
-  const Illustration = pathway.illustration;
+function Pathway({ stages }: { stages: readonly string[] }) {
   return (
-    <header
-      className="relative bg-[#1A1A24] px-3 py-2.5 text-white"
-      style={{
-        "--path-accent": pathway.accentColor,
-        borderTop: `5px solid ${pathway.accentColor}`,
-      } as React.CSSProperties}
-    >
-      <div className="flex items-center gap-2" style={{ height: "58px" }}>
-        <div
-          className="shrink-0"
-          style={{ width: "clamp(96px, 7vw, 112px)", height: "58px", flexBasis: "clamp(96px, 7vw, 112px)" }}
-        >
-          <Illustration accentColor={pathway.accentColor} />
-        </div>
-        <div className="min-w-0">
-          <p
-            className="font-mono font-bold tracking-[0.16em] text-[var(--path-accent)]"
-            style={{ fontSize: "14px", lineHeight: 1 }}
-          >
-            {String(index + 1).padStart(2, "0")}
-          </p>
-          <h3 className="mt-0.5 font-semibold text-white" style={{ fontSize: "19px", lineHeight: 1.12 }}>
-            {pathway.title}
-          </h3>
-        </div>
-      </div>
-      <p className="mt-1 font-medium text-white/85" style={{ fontSize: "16px", lineHeight: 1.2 }}>
-        {pathway.statement}
-      </p>
-    </header>
-  );
-}
-
-function StartingSignals({ pathway }: { pathway: Pathway }) {
-  return (
-    <ul className="grid h-full grid-rows-3 px-3 py-1">
-      {pathway.signals.map(({ text, icon: Icon }) => (
-        <li
-          key={text}
-          className="flex min-w-0 items-center gap-2.5 text-[#1A1A24]"
-          style={{ fontSize: "18px", lineHeight: 1.2 }}
-        >
-          <Icon aria-hidden size={23} strokeWidth={1.8} style={{ color: pathway.accentColor }} className="shrink-0" />
-          <span>{text}</span>
-        </li>
-      ))}
-    </ul>
-  );
-}
-
-function ModernisationPathway({ pathway }: { pathway: Pathway }) {
-  return (
-    <div
-      className="relative grid h-full items-start px-3 pt-2"
-      style={{ gridTemplateColumns: "repeat(3, minmax(0, 1fr))" }}
-    >
-      <span
-        aria-hidden
-        className="absolute"
-        style={{ left: "17%", right: "17%", top: "15px", height: "3px", backgroundColor: pathway.accentColor }}
-      />
-      {[33.333, 66.666].map((left) => (
-        <span
-          key={left}
-          aria-hidden
-          className="absolute"
-          style={{
-            left: `calc(${left}% - 7px)`,
-            top: "10px",
-            width: "10px",
-            height: "10px",
-            borderTop: `3px solid ${pathway.accentColor}`,
-            borderRight: `3px solid ${pathway.accentColor}`,
-            rotate: "45deg",
-          }}
-        />
-      ))}
-      {pathway.stages.map((stage) => (
-        <div key={stage} className="relative z-[1] flex min-w-0 flex-col items-center px-1 text-center">
-          <span
-            aria-hidden
-            className="rounded-full bg-white"
-            style={{ width: "16px", height: "16px", border: `3px solid ${pathway.accentColor}` }}
-          />
-          <span
-            className="mt-2 font-bold uppercase text-[#1A1A24]"
-            style={{ fontSize: "17px", lineHeight: 1.12 }}
-          >
-            {stage}
-          </span>
+    <div className="relative mt-2 grid grid-cols-4 gap-2 rounded-md bg-[#FFF9D8] px-3 pb-2 pt-2">
+      <span aria-hidden className="absolute left-[12.5%] right-[12.5%] top-[15px] h-[2px] bg-[#E8C900]" />
+      {stages.map((stage) => (
+        <div key={stage} className="relative z-[1] flex min-w-0 flex-col items-center text-center">
+          <span className="h-4 w-4 rounded-full border-[3px] border-[#E8C900] bg-white" />
+          <span className="mt-2 text-[10px] font-bold uppercase leading-[1.05] text-[#1A1A24]">{stage}</span>
         </div>
       ))}
     </div>
   );
 }
 
-function Outcome({ pathway }: { pathway: Pathway }) {
-  const OutcomeIcon = pathway.outcomeIcon;
+function EstablishedVisual() {
+  const plantPositions = [26, 50, 74] as const;
+
   return (
-    <footer
-      className="flex items-center gap-2.5 bg-[#1A1A24] px-3 text-white"
-      style={{ borderTop: `4px solid ${pathway.accentColor}` }}
-    >
-      <OutcomeIcon aria-hidden size={23} strokeWidth={1.9} style={{ color: pathway.accentColor }} className="shrink-0" />
-      <p className="font-semibold" style={{ fontSize: "18px", lineHeight: 1.22 }}>{pathway.outcome}</p>
-    </footer>
+    <div className="relative h-[250px] overflow-hidden bg-[#10202D]">
+      <div className="absolute inset-y-0 left-0 w-[61%] overflow-hidden">
+        <img
+          src={establishedPhoto}
+          alt="Daylight multi-site power generation estate"
+          className="absolute inset-0 h-full w-full object-cover"
+        />
+        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(5,18,28,0.34)_0%,rgba(5,18,28,0.10)_45%,rgba(5,18,28,0.02)_78%,rgba(5,18,28,0.08)_100%)]" />
+      </div>
+
+      <svg
+        aria-hidden
+        className="absolute inset-0 z-[2] h-full w-full"
+        viewBox="0 0 100 100"
+        preserveAspectRatio="none"
+      >
+        <path d="M30 26 H36" fill="none" stroke="rgba(255,255,255,0.64)" strokeWidth="0.42" />
+        <path d="M30 50 H36" fill="none" stroke="rgba(255,255,255,0.64)" strokeWidth="0.42" />
+        <path d="M30 74 H36" fill="none" stroke="rgba(255,255,255,0.64)" strokeWidth="0.42" />
+        <path d="M36 26 V74" fill="none" stroke="rgba(255,255,255,0.64)" strokeWidth="0.42" />
+        <path d="M36 50 H40" fill="none" stroke="rgba(255,255,255,0.64)" strokeWidth="0.42" />
+      </svg>
+
+      {establishedPlants.map((plant, index) => (
+        <div
+          key={plant}
+          className="absolute left-5 z-[3] flex -translate-y-1/2 items-center gap-2.5 text-white drop-shadow-[0_2px_3px_rgba(0,0,0,0.9)]"
+          style={{ top: `${plantPositions[index]}%` }}
+        >
+          <Building2 className="h-5 w-5 shrink-0" strokeWidth={1.7} />
+          <span className="text-[13px] font-bold tracking-[0.14em]">{plant}</span>
+        </div>
+      ))}
+
+      <div className="absolute left-[46%] top-[40%] z-[5] -translate-x-1/2 whitespace-nowrap rounded-sm bg-[#10202D]/68 px-1.5 py-[2px] text-[7.5px] font-bold uppercase tracking-[0.16em] text-white drop-shadow-[0_1px_2px_rgba(0,0,0,0.85)]">
+        Enterprise integration
+      </div>
+
+      <div className="absolute left-[44%] top-[52%] z-[4] -translate-y-1/2">
+        <div className="flex items-center drop-shadow-[0_2px_2px_rgba(0,0,0,0.4)]">
+          <div className="h-[3px] w-8 bg-ey-yellow" />
+          <span className="h-0 w-0 border-y-[8px] border-l-[13px] border-y-transparent border-l-ey-yellow" />
+        </div>
+      </div>
+
+      <div className="absolute inset-y-0 right-0 w-[39%] overflow-hidden">
+        <img
+          src={commandCentrePhoto}
+          alt="Enterprise security command centre with operators and video wall"
+          className="absolute inset-0 h-full w-full object-cover"
+        />
+        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(8,22,32,0.02)_0%,rgba(8,22,32,0.04)_58%,rgba(8,22,32,0.78)_100%)]" />
+        <div className="absolute inset-x-0 bottom-0 z-[1] px-3 pb-2.5 pt-8 text-center text-[11px] font-bold uppercase tracking-[0.08em] text-ey-yellow drop-shadow-[0_2px_2px_rgba(0,0,0,0.9)]">
+          Enterprise command centre
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function BrownfieldVisual() {
+  return (
+    <div className="relative h-[250px] overflow-hidden">
+      <img
+        src={brownfieldPhoto}
+        alt="Daylight brownfield power generation plant"
+        className="absolute inset-0 h-full w-full object-cover"
+      />
+      <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(17,25,31,0.44)_0%,rgba(17,25,31,0.22)_30%,rgba(17,25,31,0.06)_52%,rgba(17,25,31,0.14)_72%,rgba(17,25,31,0.34)_100%)]" />
+
+      <div className="absolute inset-y-0 left-0 z-[1] flex w-[35%] flex-col justify-center gap-3 px-4 text-white">
+        {fragmented.map(({ icon: Icon, label }) => (
+          <div key={label} className="flex items-center gap-3 drop-shadow-[0_2px_3px_rgba(0,0,0,0.95)]">
+            <Icon className="h-5 w-5 shrink-0" strokeWidth={1.75} />
+            <span className="text-[11px] font-semibold">{label}</span>
+          </div>
+        ))}
+      </div>
+
+      <div className="absolute left-[49%] top-1/2 z-[2] -translate-x-1/2 -translate-y-1/2">
+        <div className="flex items-center drop-shadow-[0_2px_2px_rgba(0,0,0,0.35)]">
+          <div className="w-8 border-t-2 border-dashed border-white/80" />
+          <div className="h-1 w-8 bg-ey-yellow" />
+          <span className="h-0 w-0 border-y-[9px] border-l-[14px] border-y-transparent border-l-ey-yellow" />
+        </div>
+      </div>
+
+      <div className="absolute inset-y-0 right-0 z-[1] flex w-[44%] items-center pr-4 text-white">
+        <div className="grid w-full grid-cols-2 gap-x-5 gap-y-5">
+          {integrated.map(({ icon: Icon, label }) => (
+            <div key={label} className="flex min-w-0 flex-col items-center text-center drop-shadow-[0_2px_3px_rgba(0,0,0,0.95)]">
+              <Icon className="h-5 w-5 text-ey-yellow" strokeWidth={1.7} />
+              <span className="mt-1.5 text-[9.8px] font-semibold leading-[1.08] text-white">{label}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function CapabilityBand() {
+  const items = [
+    { icon: Eye, label: "Unified visibility" },
+    { icon: Network, label: "Centralised orchestration" },
+    { icon: BarChart3, label: "Analytics & insights" },
+    { icon: ShieldCheck, label: "Governance & compliance" },
+  ] as const;
+  return (
+    <div className="grid h-[42px] grid-cols-4 divide-x divide-white/15 bg-[#10202D] text-white">
+      {items.map(({ icon: Icon, label }) => (
+        <div key={label} className="flex h-full items-center justify-center gap-2 px-2 text-center">
+          <Icon className="h-4.5 w-4.5 shrink-0 text-white" strokeWidth={1.7} />
+          <span className="text-[10px] font-semibold leading-[1.08]">{label}</span>
+        </div>
+      ))}
+    </div>
   );
 }
 
@@ -253,51 +204,105 @@ export function Segments() {
   return (
     <section
       id="segments"
-      className="scroll-mt-24 bg-background py-6 text-foreground"
+      className="scroll-mt-24 bg-background px-5 py-4 text-foreground md:px-8"
       style={{ minHeight: "calc(100vh - 98px)" }}
     >
-      <div className="mx-auto w-full max-w-6xl px-5 md:px-8">
-        <div>
-          <p className="flex items-center gap-3 text-base font-semibold uppercase tracking-[0.22em] text-ey-green-deep">
-            <span aria-hidden className="h-3 w-1.5 shrink-0 rounded-sm bg-ey-yellow" />
-            Section 03
+      <div className="mx-auto w-full max-w-6xl">
+        <header>
+          <p className="flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.22em] text-ey-green-deep">
+            <span aria-hidden className="h-3 w-6 shrink-0 rounded-full bg-ey-yellow" />
+            Section 03 — Starting position
           </p>
-          <h2
-            className="mt-1 whitespace-normal font-semibold leading-[1.04] text-ey-green-deep lg:whitespace-nowrap"
-            style={{ fontSize: "clamp(42px, 3.25vw, 56px)", lineHeight: 1.04 }}
-          >
-            One sector. Three security starting points.
+          <h2 className="mt-1 font-semibold leading-[1.02] text-ey-green-deep" style={{ fontSize: "2.75rem" }}>
+            One sector. Two modernisation starting points.
           </h2>
-          <p className="mt-1 text-[18px] leading-[1.35] text-muted-foreground">
-            The modernisation path depends on surveillance maturity, operating scale and threat exposure.
+          <p className="mt-1 text-lg leading-[1.25] text-muted-foreground">
+            The modernisation pathway is determined by the maturity, scale and integration of the existing security estate.
           </p>
+        </header>
+
+        <div className="mt-3 grid overflow-hidden rounded-xl border border-[#C9C9D0] bg-white lg:grid-cols-2">
+          <div className="border-b border-[#C9C9D0] lg:border-b-0 lg:border-r">
+            <div className="flex items-center justify-between bg-[#10202D] px-4 py-2 text-white">
+              <span className="text-[11px] font-bold uppercase tracking-[0.12em]">Starting position</span>
+              <span className="text-[11px] font-bold text-ey-yellow">Multi-site / established</span>
+            </div>
+            <EstablishedVisual />
+            <CapabilityBand />
+          </div>
+          <div>
+            <div className="flex items-center justify-between bg-[#10202D] px-4 py-2 text-white">
+              <span className="text-[11px] font-bold uppercase tracking-[0.12em]">Starting position</span>
+              <span className="text-[11px] font-bold text-ey-yellow">Standalone / brownfield</span>
+            </div>
+            <BrownfieldVisual />
+            <div className="grid h-[42px] grid-cols-3 divide-x divide-[#D7D2BF] bg-[#EEE8D9] text-[#1A1A24]">
+              <div className="flex h-full items-center justify-center px-2 text-center text-[9.5px] font-semibold">Fragmented systems</div>
+              <div className="flex h-full items-center justify-center px-2 text-center text-[9.5px] font-semibold">Phased integration</div>
+              <div className="flex h-full items-center justify-center px-2 text-center text-[9.5px] font-semibold">Unified security estate</div>
+            </div>
+          </div>
         </div>
 
-        <div
-          data-segments-infographic
-          aria-label="Three security modernisation pathways"
-          className="mt-3 grid overflow-visible rounded-xl border border-[#C8C8D0] bg-white lg:grid-cols-3"
-        >
+        <div className="grid overflow-hidden rounded-b-xl border-x border-b border-[#C9C9D0] bg-white lg:grid-cols-2">
           {pathways.map((pathway, index) => (
-            <article
-              key={pathway.title}
-              className={cn(
-                "grid min-w-0",
-                index > 0 && "border-t border-[#C8C8D0] lg:border-l lg:border-t-0",
-              )}
-              style={{
-                backgroundColor: pathway.bodyTint,
-                gridTemplateRows: "122px 150px 86px 72px",
-              }}
-            >
-              <ArchetypeHeader pathway={pathway} index={index} />
-              <StartingSignals pathway={pathway} />
-              <div className="border-t border-[#C8C8D0]">
-                <ModernisationPathway pathway={pathway} />
+            <article key={pathway.title} className={index === 1 ? "border-t border-[#C9C9D0] lg:border-l lg:border-t-0" : ""}>
+              <div className="px-4 py-2.5">
+                <div className="flex items-start gap-2.5">
+                  <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-md bg-ey-yellow text-[18px] font-bold text-[#1A1A24]">
+                    {pathway.number}
+                  </span>
+                  <div className="min-w-0">
+                    <h3 className="text-[17px] font-semibold leading-[1.08] text-[#1A1A24]">{pathway.title}</h3>
+                    <p className="mt-0.5 text-[10px] font-bold uppercase tracking-[0.11em] text-[#5A5A66]">{pathway.strap}</p>
+                  </div>
+                </div>
+
+                <div className="mt-2 flex gap-2.5">
+                  <Building2 className="mt-0.5 h-4.5 w-4.5 shrink-0 text-[#D3AE00]" strokeWidth={1.8} aria-hidden />
+                  <div className="min-w-0 flex-1">
+                    <p className="text-[11.5px] font-bold text-[#1A1A24]">Where they are today</p>
+                    <ul className="mt-0.5 space-y-0 text-[10.3px] leading-[1.14] text-[#353541]">
+                      {pathway.bullets.map((bullet) => (
+                        <li key={bullet} className="flex gap-1.5">
+                          <span className="mt-[5px] h-1 w-1 shrink-0 rounded-full bg-[#1A1A24]" />
+                          <span>{bullet}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+
+                <div className="mt-2 border-t border-[#DEDEE3] pt-1.5">
+                  <div className="flex items-center gap-2">
+                    <Network className="h-4.5 w-4.5 text-[#D3AE00]" strokeWidth={1.8} aria-hidden />
+                    <p className="text-[11.5px] font-bold text-[#1A1A24]">Modernisation pathway</p>
+                  </div>
+                  <Pathway stages={pathway.stages} />
+                </div>
+
+                <div className="mt-1.5 flex gap-2.5 border-t border-[#DEDEE3] pt-1.5">
+                  <Target className="mt-0.5 h-4.5 w-4.5 shrink-0 text-[#D3AE00]" strokeWidth={1.8} aria-hidden />
+                  <div>
+                    <p className="text-[11.5px] font-bold text-[#1A1A24]">Target state</p>
+                    <p className="mt-0.5 text-[10.3px] leading-[1.14] text-[#353541]">{pathway.target}</p>
+                  </div>
+                </div>
               </div>
-              <Outcome pathway={pathway} />
             </article>
           ))}
+        </div>
+
+        <div className="mt-2.5 flex items-center gap-3 rounded-lg border border-[#E2C900] bg-[#FFFDF0] px-4 py-2 text-[#1A1A24]">
+          <CheckCircle2 className="h-6 w-6 shrink-0 text-[#D3AE00]" strokeWidth={1.8} aria-hidden />
+          <div className="min-w-0">
+            <p className="text-[11.5px] font-semibold leading-[1.2]">
+              Plant type defines the starting context. Asset criticality, geography and threat exposure then determine the required security posture.
+            </p>
+            <p className="mt-0.5 text-[10px] leading-[1.2] text-[#5A5A66]">
+              The following sections translate this into asset-level security requirements, assessment priorities and operational use cases.
+            </p>
+          </div>
         </div>
       </div>
     </section>
