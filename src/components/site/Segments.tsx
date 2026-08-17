@@ -87,7 +87,7 @@ function EstablishedVisual() {
           alt="Daylight multi-site power generation estate"
           className="absolute inset-0 h-full w-full object-cover"
         />
-        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(5,18,28,0.36)_0%,rgba(5,18,28,0.12)_45%,rgba(5,18,28,0.02)_78%,rgba(5,18,28,0.08)_100%)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(5,18,28,0.34)_0%,rgba(5,18,28,0.10)_45%,rgba(5,18,28,0.02)_78%,rgba(5,18,28,0.08)_100%)]" />
       </div>
 
       <svg
@@ -96,10 +96,11 @@ function EstablishedVisual() {
         viewBox="0 0 100 100"
         preserveAspectRatio="none"
       >
-        <path d="M27 26 H52" fill="none" stroke="rgba(255,255,255,0.58)" strokeWidth="0.42" />
-        <path d="M27 50 H52" fill="none" stroke="rgba(255,255,255,0.58)" strokeWidth="0.42" />
-        <path d="M27 74 H52" fill="none" stroke="rgba(255,255,255,0.58)" strokeWidth="0.42" />
-        <path d="M52 26 V74" fill="none" stroke="rgba(255,255,255,0.58)" strokeWidth="0.42" />
+        <path d="M27 26 H38" fill="none" stroke="rgba(255,255,255,0.64)" strokeWidth="0.42" />
+        <path d="M27 50 H38" fill="none" stroke="rgba(255,255,255,0.64)" strokeWidth="0.42" />
+        <path d="M27 74 H38" fill="none" stroke="rgba(255,255,255,0.64)" strokeWidth="0.42" />
+        <path d="M38 26 V74" fill="none" stroke="rgba(255,255,255,0.64)" strokeWidth="0.42" />
+        <path d="M38 50 H43" fill="none" stroke="rgba(255,255,255,0.64)" strokeWidth="0.42" />
       </svg>
 
       {establishedPlants.map((plant, index) => (
@@ -113,13 +114,13 @@ function EstablishedVisual() {
         </div>
       ))}
 
-      <div className="absolute left-[52%] top-[39%] z-[4] -translate-x-1/2 text-[7.5px] font-bold uppercase tracking-[0.16em] text-white/85 drop-shadow-[0_1px_2px_rgba(0,0,0,0.85)]">
+      <div className="absolute left-[48.5%] top-[39%] z-[4] -translate-x-1/2 whitespace-nowrap text-[7.5px] font-bold uppercase tracking-[0.16em] text-white/88 drop-shadow-[0_1px_2px_rgba(0,0,0,0.85)]">
         Enterprise integration
       </div>
 
-      <div className="absolute left-[52%] top-1/2 z-[4] -translate-y-1/2">
+      <div className="absolute left-[47%] top-1/2 z-[4] -translate-y-1/2">
         <div className="flex items-center drop-shadow-[0_2px_2px_rgba(0,0,0,0.4)]">
-          <div className="h-[3px] w-12 bg-ey-yellow" />
+          <div className="h-[3px] w-8 bg-ey-yellow" />
           <span className="h-0 w-0 border-y-[8px] border-l-[13px] border-y-transparent border-l-ey-yellow" />
         </div>
       </div>
