@@ -362,7 +362,7 @@ const CX = 150;
 const CY = 150;
 const INNER = 48;
 const OUTER = 116;
-const NUMBER_RADIUS = 86;
+const INDEX_RADIUS = 124;
 const GAP = 1.9;
 
 function polar(cx: number, cy: number, r: number, deg: number) {
@@ -524,7 +524,7 @@ export function AsIsAssessment() {
                     const filled = Math.round(INNER + ((OUTER - INNER) * domain.maturity) / 5);
                     const isActive = domain.key === activeKey;
                     const mid = (start + end) / 2;
-                    const numberPosition = polar(CX, CY, NUMBER_RADIUS, mid);
+                    const indexPosition = polar(CX, CY, INDEX_RADIUS, mid);
                     return (
                       <g
                         key={domain.key}
@@ -545,12 +545,12 @@ export function AsIsAssessment() {
                         <path d={sector(start, end, INNER, OUTER)} fill="#F1F1F3" stroke="#D9D9DE" strokeWidth={0.8} />
                         <path d={sector(start, end, INNER, filled)} fill={isActive ? "#FFE600" : "#253948"} opacity={isActive ? 1 : 0.78} />
                         <text
-                          x={numberPosition.x}
-                          y={numberPosition.y}
+                          x={indexPosition.x}
+                          y={indexPosition.y}
                           textAnchor="middle"
                           dominantBaseline="middle"
-                          fill={isActive ? "#1A1A24" : "#FFFFFF"}
-                          className="text-[10px] font-bold"
+                          fill={isActive ? "#B39B00" : "#8A8A95"}
+                          className={cn("text-[8px] font-semibold", isActive && "font-bold")}
                         >
                           {domain.number}
                         </text>
@@ -559,13 +559,13 @@ export function AsIsAssessment() {
                   })}
 
                   <circle cx={CX} cy={CY} r={INNER - 4} fill="#FFFFFF" stroke="#D9D9DE" />
-                  <text x={CX} y={CY - 16} textAnchor="middle" fill="#666675" className="text-[8px] font-bold uppercase tracking-[0.10em]">
-                    Physical security
+                  <text x={CX} y={CY - 10} textAnchor="middle" fill="#666675" className="text-[8px] font-bold uppercase tracking-[0.11em]">
+                    Security
                   </text>
-                  <text x={CX} y={CY - 5} textAnchor="middle" fill="#666675" className="text-[8px] font-bold uppercase tracking-[0.10em]">
+                  <text x={CX} y={CY + 2} textAnchor="middle" fill="#666675" className="text-[8px] font-bold uppercase tracking-[0.11em]">
                     maturity
                   </text>
-                  <text x={CX} y={CY + 18} textAnchor="middle" fill="#10202D" className="text-[19px] font-bold">
+                  <text x={CX} y={CY + 24} textAnchor="middle" fill="#10202D" className="text-[19px] font-bold">
                     {active.maturity}/5
                   </text>
                 </svg>
@@ -597,7 +597,7 @@ export function AsIsAssessment() {
 
             <div className="mt-2 border-t border-hairline pt-2">
               <p className="text-[9.5px] leading-[1.2] text-muted-foreground">
-                Maturity bands are illustrative placeholders; actual scoring is produced through the on-site assessment.
+                Radial depth indicates maturity; yellow identifies the selected domain. Scores shown are illustrative placeholders and are produced through the on-site assessment.
               </p>
             </div>
           </div>
