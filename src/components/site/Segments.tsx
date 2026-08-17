@@ -14,8 +14,11 @@ import {
 } from "lucide-react";
 
 import commandCentreImage from "@/assets/hero-command-centre.jpg";
-import establishedPlantImage from "@/assets/hero-power-plant.jpg";
-import brownfieldPlantImage from "@/assets/hero-power-plant.jpg";
+
+const establishedPlantImage =
+  "https://commons.wikimedia.org/wiki/Special:FilePath/Photograph_of_Guru_Nanak_Dev_Thermal_Plant_(GNDTP),_Bhatinda,_Bathinda_district,_Punjab,_India,_April_2023.jpg";
+const brownfieldPlantImage =
+  "https://commons.wikimedia.org/wiki/Special:FilePath/NTPC_chimneys.jpg";
 
 const pathways = [
   {
@@ -79,22 +82,22 @@ function EstablishedVisual() {
         src={establishedPlantImage}
         alt="Established multi-site generation estate"
         className="absolute inset-0 h-full w-full object-cover"
-        style={{ filter: "saturate(.92) contrast(1.04) brightness(.9)", objectPosition: "center 46%" }}
+        style={{ filter: "saturate(1.02) contrast(1.01) brightness(1.08)", objectPosition: "center 48%" }}
       />
-      <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(15,38,55,.28),rgba(15,38,55,.04))]" />
+      <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(15,38,55,.18),rgba(15,38,55,.015))]" />
 
       <div className="absolute left-3 top-3 w-[32%] space-y-2">
         {["PLANT A", "PLANT B", "PLANT C"].map((plant, index) => (
-          <div key={plant} className="flex h-[58px] overflow-hidden rounded border border-white/45 bg-[#102538]/82 shadow-sm backdrop-blur-[1px]">
+          <div key={plant} className="flex h-[58px] overflow-hidden rounded border border-white/55 bg-[#102538]/82 shadow-sm backdrop-blur-[1px]">
             <div className="relative w-[62%] overflow-hidden border-r border-white/25">
               <img
                 src={establishedPlantImage}
                 alt=""
                 aria-hidden="true"
                 className="h-full w-full object-cover"
-                style={{ objectPosition: `${43 + index * 10}% 48%`, filter: "brightness(.94) saturate(.9)" }}
+                style={{ objectPosition: `${38 + index * 9}% 48%`, filter: "brightness(1.03) saturate(1.02)" }}
               />
-              <span className="absolute left-2 top-1.5 text-[10px] font-bold tracking-[0.08em] text-white">{plant}</span>
+              <span className="absolute left-2 top-1.5 text-[10px] font-bold tracking-[0.08em] text-white drop-shadow">{plant}</span>
             </div>
             <div className="grid flex-1 grid-cols-2 place-items-center gap-1 p-1 text-white/95">
               <Camera className="h-4 w-4" strokeWidth={1.6} />
@@ -107,19 +110,19 @@ function EstablishedVisual() {
       </div>
 
       <div className="absolute left-[39%] top-[95px] flex items-center gap-3">
-        <div className="flex h-16 w-16 items-center justify-center rounded-full border-2 border-white bg-[#1A3850]/88 shadow-xl">
+        <div className="flex h-16 w-16 items-center justify-center rounded-full border-2 border-white bg-[#1A3850]/82 shadow-xl">
           <ShieldCheck className="h-8 w-8 text-white" strokeWidth={1.6} />
         </div>
         <div className="h-1 w-12 bg-ey-yellow" />
         <span className="h-0 w-0 border-y-[10px] border-l-[16px] border-y-transparent border-l-ey-yellow" />
       </div>
 
-      <div className="absolute right-3 top-10 w-[38%] overflow-hidden rounded-md border border-white/45 bg-[#0D1E2B]/92 shadow-xl">
+      <div className="absolute right-3 top-10 w-[38%] overflow-hidden rounded-md border border-white/55 bg-[#0D1E2B]/92 shadow-xl">
         <img
           src={commandCentreImage}
           alt="Enterprise command centre"
           className="h-[145px] w-full object-cover"
-          style={{ filter: "brightness(1.02) saturate(.92) contrast(1.04)" }}
+          style={{ filter: "brightness(1.08) saturate(.98) contrast(1.02)" }}
         />
         <div className="bg-[#101923]/94 px-3 py-1.5 text-center text-[11px] font-bold uppercase tracking-[0.05em] text-ey-yellow">
           Enterprise command centre
@@ -138,18 +141,18 @@ function EstablishedVisual() {
 
 function BrownfieldVisual() {
   return (
-    <div className="relative h-[272px] overflow-hidden bg-[#645E55] text-white">
+    <div className="relative h-[272px] overflow-hidden bg-[#9E8B74] text-white">
       <img
         src={brownfieldPlantImage}
         alt="Operational brownfield power plant"
         className="absolute inset-0 h-full w-full object-cover"
-        style={{ filter: "saturate(.8) contrast(1.03) brightness(.95)", objectPosition: "70% 48%" }}
+        style={{ filter: "saturate(1.02) contrast(1.01) brightness(1.12)", objectPosition: "center 50%" }}
       />
-      <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(22,29,36,.38),rgba(22,29,36,.08))]" />
+      <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(28,35,40,.20),rgba(28,35,40,.015))]" />
 
       <div className="absolute left-3 top-3 grid w-[31%] gap-2">
         {fragmented.map(({ icon: Icon, label }) => (
-          <div key={label} className="flex items-center gap-2 rounded bg-[#1B2630]/88 px-2.5 py-1.5 backdrop-blur-[1px]">
+          <div key={label} className="flex items-center gap-2 rounded bg-[#1B2630]/86 px-2.5 py-1.5 backdrop-blur-[1px]">
             <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-white/75">
               <Icon className="h-4.5 w-4.5" strokeWidth={1.6} />
             </span>
