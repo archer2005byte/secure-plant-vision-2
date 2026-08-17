@@ -12,7 +12,9 @@ import {
   ShieldCheck,
   Target,
 } from "lucide-react";
-import heroPowerPlant from "@/assets/hero-power-plant.jpg";
+import establishedPhoto from "@/assets/section3-established.jpg";
+import commandCentrePhoto from "@/assets/section3-command-centre.jpg";
+import brownfieldPhoto from "@/assets/section3-brownfield.jpg";
 
 const establishedPlants = ["PLANT A", "PLANT B", "PLANT C"] as const;
 const fragmented = [
@@ -76,57 +78,58 @@ function Pathway({ stages }: { stages: readonly string[] }) {
 
 function EstablishedVisual() {
   return (
-    <div className="relative grid h-[235px] grid-cols-[34%_18%_48%] overflow-hidden bg-[#91a7b6]">
-      <img
-        src={heroPowerPlant}
-        alt="Power generation plant"
-        className="absolute inset-0 h-full w-full object-cover"
-      />
-      <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(9,31,46,0.18)_0%,rgba(9,31,46,0.30)_48%,rgba(9,31,46,0.62)_100%)]" />
-
-      <div className="relative z-[1] flex flex-col justify-center gap-2 px-3">
-        {establishedPlants.map((plant) => (
-          <div key={plant} className="grid h-[54px] grid-cols-[56%_44%] overflow-hidden rounded-md border border-white/55 bg-[#173047]/88 text-white shadow-sm backdrop-blur-[1px]">
-            <div className="flex items-end gap-2 border-r border-white/20 bg-[#233f55]/82 px-2 py-2">
-              <Building2 className="h-5 w-5" strokeWidth={1.5} />
-              <span className="text-[11px] font-bold tracking-[0.08em]">{plant}</span>
+    <div className="grid h-[250px] grid-cols-[47%_10%_43%] overflow-hidden bg-[#9AABB7]">
+      <div className="relative overflow-hidden">
+        <img
+          src={establishedPhoto}
+          alt="Daylight multi-site power generation estate"
+          className="absolute inset-0 h-full w-full object-cover"
+        />
+        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(7,24,37,0.60)_0%,rgba(7,24,37,0.34)_68%,rgba(7,24,37,0.16)_100%)]" />
+        <div className="relative z-[1] flex h-full flex-col justify-center gap-2.5 px-3.5">
+          {establishedPlants.map((plant) => (
+            <div
+              key={plant}
+              className="grid h-[55px] grid-cols-[56%_44%] overflow-hidden rounded-md border border-white/65 bg-[#173047]/86 text-white shadow-lg backdrop-blur-[1px]"
+            >
+              <div className="flex items-center gap-2 border-r border-white/25 px-2.5">
+                <Building2 className="h-5 w-5 shrink-0" strokeWidth={1.5} />
+                <span className="text-[11px] font-bold tracking-[0.08em]">{plant}</span>
+              </div>
+              <div className="grid grid-cols-2 place-items-center gap-1 p-1.5 text-white/95">
+                <Camera className="h-4 w-4" strokeWidth={1.6} />
+                <Server className="h-4 w-4" strokeWidth={1.6} />
+                <KeyRound className="h-4 w-4" strokeWidth={1.6} />
+                <Network className="h-4 w-4" strokeWidth={1.6} />
+              </div>
             </div>
-            <div className="grid grid-cols-2 place-items-center gap-1 p-1.5 text-white/90">
-              <Camera className="h-4 w-4" strokeWidth={1.6} />
-              <Server className="h-4 w-4" strokeWidth={1.6} />
-              <KeyRound className="h-4 w-4" strokeWidth={1.6} />
-              <Network className="h-4 w-4" strokeWidth={1.6} />
-            </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
 
-      <div className="relative z-[1] flex items-center justify-center">
+      <div className="relative flex items-center justify-center overflow-hidden bg-[#AAB8C1]">
+        <div className="absolute inset-y-0 left-0 w-px bg-white/35" />
+        <div className="absolute inset-y-0 right-0 w-px bg-[#70818D]/35" />
         <div className="flex flex-col items-center gap-3">
-          <div className="flex h-16 w-16 items-center justify-center rounded-full border-2 border-white bg-[#294A63]/92 text-white shadow-lg">
-            <ShieldCheck className="h-8 w-8" strokeWidth={1.6} />
+          <div className="flex h-14 w-14 items-center justify-center rounded-full border-2 border-white bg-[#315269]/95 text-white shadow-lg">
+            <ShieldCheck className="h-7 w-7" strokeWidth={1.6} />
           </div>
           <div className="flex items-center">
-            <div className="h-1 w-10 bg-ey-yellow" />
-            <span className="h-0 w-0 border-y-[9px] border-l-[14px] border-y-transparent border-l-ey-yellow" />
+            <div className="h-1 w-8 bg-ey-yellow" />
+            <span className="h-0 w-0 border-y-[8px] border-l-[13px] border-y-transparent border-l-ey-yellow" />
           </div>
         </div>
       </div>
 
-      <div className="relative z-[1] flex items-center justify-center px-3">
-        <div className="w-full overflow-hidden rounded-lg border border-[#405A6D] bg-[#0E202E]/94 text-white shadow-xl backdrop-blur-[1px]">
-          <div className="grid grid-cols-3 gap-2 p-3">
-            {[0, 1, 2, 3, 4, 5].map((item) => (
-              <div key={item} className="aspect-[4/3] rounded border border-white/20 bg-[linear-gradient(145deg,#162D3D,#2C5B78)] p-2">
-                <div className="h-1.5 w-1/2 rounded bg-ey-yellow/80" />
-                <div className="mt-2 h-1 w-3/4 rounded bg-white/30" />
-                <div className="mt-1 h-1 w-1/2 rounded bg-white/20" />
-              </div>
-            ))}
-          </div>
-          <div className="bg-[#111B24] px-3 py-2 text-center text-[11px] font-bold uppercase tracking-[0.08em] text-ey-yellow">
-            Enterprise command centre
-          </div>
+      <div className="relative overflow-hidden bg-[#10202D]">
+        <img
+          src={commandCentrePhoto}
+          alt="Enterprise security command centre with operators and video wall"
+          className="absolute inset-0 h-full w-full object-cover"
+        />
+        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(8,22,32,0.08)_0%,rgba(8,22,32,0.10)_58%,rgba(8,22,32,0.86)_100%)]" />
+        <div className="absolute inset-x-0 bottom-0 z-[1] bg-[#0F1B24]/90 px-3 py-2 text-center text-[11px] font-bold uppercase tracking-[0.08em] text-ey-yellow backdrop-blur-[1px]">
+          Enterprise command centre
         </div>
       </div>
     </div>
@@ -135,10 +138,17 @@ function EstablishedVisual() {
 
 function BrownfieldVisual() {
   return (
-    <div className="grid h-[235px] grid-cols-[34%_18%_48%] bg-[linear-gradient(135deg,#e8e4da_0%,#d2cbbb_48%,#bab09d_100%)]">
-      <div className="flex flex-col justify-center gap-2 px-3">
+    <div className="relative grid h-[250px] grid-cols-[34%_16%_50%] overflow-hidden">
+      <img
+        src={brownfieldPhoto}
+        alt="Daylight brownfield power generation plant"
+        className="absolute inset-0 h-full w-full object-cover"
+      />
+      <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(20,28,34,0.56)_0%,rgba(20,28,34,0.34)_35%,rgba(245,241,226,0.46)_62%,rgba(245,241,226,0.68)_100%)]" />
+
+      <div className="relative z-[1] flex flex-col justify-center gap-2 px-3">
         {fragmented.map(({ icon: Icon, label }) => (
-          <div key={label} className="flex h-[34px] items-center gap-2 rounded-md bg-[#28333D]/90 px-2.5 text-white shadow-sm">
+          <div key={label} className="flex h-[35px] items-center gap-2 rounded-md border border-white/10 bg-[#26323C]/94 px-2.5 text-white shadow-md backdrop-blur-[1px]">
             <span className="flex h-6 w-6 items-center justify-center rounded-full border border-white/70">
               <Icon className="h-3.5 w-3.5" strokeWidth={1.6} />
             </span>
@@ -147,17 +157,17 @@ function BrownfieldVisual() {
         ))}
       </div>
 
-      <div className="flex items-center justify-center">
-        <div className="flex items-center">
-          <div className="h-1 w-10 bg-ey-yellow" />
+      <div className="relative z-[1] flex items-center justify-center">
+        <div className="flex items-center drop-shadow-sm">
+          <div className="h-1 w-9 bg-ey-yellow" />
           <span className="h-0 w-0 border-y-[9px] border-l-[14px] border-y-transparent border-l-ey-yellow" />
         </div>
       </div>
 
-      <div className="flex items-center justify-center px-3">
-        <div className="grid w-full grid-cols-2 gap-2 rounded-lg border border-ey-yellow bg-[#FFFDF3] p-3 text-[#1A1A24] shadow-lg">
+      <div className="relative z-[1] flex items-center justify-center px-3.5">
+        <div className="grid w-full grid-cols-2 gap-2 rounded-xl border border-ey-yellow bg-[#FFFDF3]/95 p-3 text-[#1A1A24] shadow-xl backdrop-blur-[2px]">
           {integrated.map(({ icon: Icon, label }) => (
-            <div key={label} className="flex min-h-[58px] flex-col items-center justify-center rounded-md border border-[#E5E0CA] bg-white/70 px-1 text-center">
+            <div key={label} className="flex min-h-[59px] flex-col items-center justify-center rounded-md border border-[#DED8C5] bg-white/90 px-1 text-center">
               <Icon className="h-5 w-5" strokeWidth={1.5} />
               <span className="mt-1.5 text-[9.5px] font-semibold leading-[1.05]">{label}</span>
             </div>
