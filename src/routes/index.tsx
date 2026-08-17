@@ -3,7 +3,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { SiteNav } from "@/components/site/SiteNav";
 import { DeckNavigation } from "@/components/site/DeckNavigation";
 import { Hero } from "@/components/site/Hero";
-import { WhyNow } from "@/components/site/WhyNow";
+import { WhyNowWithRails } from "@/components/site/WhyNowWithRails";
 import { Segments } from "@/components/site/Segments";
 import { PlantBlocks } from "@/components/site/PlantBlocks";
 import { AsIsAssessment } from "@/components/site/AsIsAssessment";
@@ -42,7 +42,7 @@ function Index() {
       <DeckNavigation />
       <main>
         <Hero />
-        <WhyNow />
+        <WhyNowWithRails />
         <Segments />
         <PlantBlocks />
         <AsIsAssessment />
