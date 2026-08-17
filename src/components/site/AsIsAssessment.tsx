@@ -371,7 +371,7 @@ const CX = 150;
 const CY = 150;
 const INNER = 48;
 const OUTER = 116;
-const INDEX_RADIUS = 124;
+const INDEX_RADIUS = 127;
 const GAP = 1.9;
 
 function polar(cx: number, cy: number, r: number, deg: number) {
@@ -519,10 +519,10 @@ export function AsIsAssessment() {
                   ]).map(({ phase, start, end }) => (
                     <path
                       key={phase}
-                      d={arcPath(start + 2.5, end - 2.5, 133)}
+                      d={arcPath(start + 2.5, end - 2.5, 140)}
                       fill="none"
                       stroke={phase === activePhase ? "#FFE600" : "#D0D0D6"}
-                      strokeWidth={phase === activePhase ? 5 : 3}
+                      strokeWidth={phase === activePhase ? 4 : 2.5}
                       strokeLinecap="round"
                     />
                   ))}
@@ -553,6 +553,14 @@ export function AsIsAssessment() {
                       >
                         <path d={sector(start, end, INNER, OUTER)} fill="#F1F1F3" stroke="#D9D9DE" strokeWidth={0.8} />
                         <path d={sector(start, end, INNER, filled)} fill={isActive ? "#FFE600" : "#253948"} opacity={isActive ? 1 : 0.78} />
+                        {isActive && (
+                          <circle
+                            cx={indexPosition.x}
+                            cy={indexPosition.y}
+                            r={9}
+                            fill="#10202D"
+                          />
+                        )}
                         <text
                           x={indexPosition.x}
                           y={indexPosition.y}
