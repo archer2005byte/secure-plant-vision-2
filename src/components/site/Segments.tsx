@@ -13,9 +13,6 @@ import {
   Target,
 } from "lucide-react";
 
-import commandCentreImage from "@/assets/section3-command-centre-generated.jpg";
-import daylightPlantImage from "@/assets/section3-plant-daylight-generated.jpg";
-
 const establishedPlants = ["PLANT A", "PLANT B", "PLANT C"] as const;
 const fragmented = [
   { icon: Camera, label: "Cameras" },
@@ -78,23 +75,15 @@ function Pathway({ stages }: { stages: readonly string[] }) {
 
 function EstablishedVisual() {
   return (
-    <div className="grid h-[250px] grid-cols-[37%_15%_48%] overflow-hidden bg-[#B9CAD5]">
-      <div className="relative flex flex-col justify-center gap-2 px-3 py-3">
-        <img src={daylightPlantImage} alt="Daylight power generation plant" className="absolute inset-0 h-full w-full object-cover" />
-        <div className="absolute inset-0 bg-[#163044]/30" />
-        {establishedPlants.map((plant, index) => (
-          <div key={plant} className="relative z-[1] grid h-[60px] grid-cols-[58%_42%] overflow-hidden rounded-md border border-white/70 bg-[#173047]/92 text-white shadow-md">
-            <div className="relative overflow-hidden border-r border-white/20">
-              <img
-                src={daylightPlantImage}
-                alt=""
-                className="absolute inset-0 h-full w-full object-cover"
-                style={{ objectPosition: `${48 + index * 10}% 50%` }}
-              />
-              <div className="absolute inset-0 bg-[#0D2435]/35" />
-              <span className="absolute left-2 top-2 text-[11px] font-bold tracking-[0.08em]">{plant}</span>
+    <div className="grid h-[235px] grid-cols-[34%_18%_48%] bg-[linear-gradient(135deg,#dce6ec_0%,#b7c8d3_48%,#91a7b6_100%)]">
+      <div className="flex flex-col justify-center gap-2 px-3">
+        {establishedPlants.map((plant) => (
+          <div key={plant} className="grid h-[54px] grid-cols-[56%_44%] overflow-hidden rounded-md border border-white/55 bg-[#173047]/90 text-white shadow-sm">
+            <div className="flex items-end gap-2 border-r border-white/20 bg-[#233f55]/90 px-2 py-2">
+              <Building2 className="h-5 w-5" strokeWidth={1.5} />
+              <span className="text-[11px] font-bold tracking-[0.08em]">{plant}</span>
             </div>
-            <div className="grid grid-cols-2 place-items-center gap-1 p-1.5 text-white/95">
+            <div className="grid grid-cols-2 place-items-center gap-1 p-1.5 text-white/90">
               <Camera className="h-4 w-4" strokeWidth={1.6} />
               <Server className="h-4 w-4" strokeWidth={1.6} />
               <KeyRound className="h-4 w-4" strokeWidth={1.6} />
@@ -104,22 +93,32 @@ function EstablishedVisual() {
         ))}
       </div>
 
-      <div className="relative flex items-center justify-center bg-[#163044]/12">
+      <div className="flex items-center justify-center">
         <div className="flex flex-col items-center gap-3">
           <div className="flex h-16 w-16 items-center justify-center rounded-full border-2 border-white bg-[#294A63] text-white shadow-lg">
             <ShieldCheck className="h-8 w-8" strokeWidth={1.6} />
           </div>
           <div className="flex items-center">
-            <div className="h-1 w-8 bg-ey-yellow" />
+            <div className="h-1 w-10 bg-ey-yellow" />
             <span className="h-0 w-0 border-y-[9px] border-l-[14px] border-y-transparent border-l-ey-yellow" />
           </div>
         </div>
       </div>
 
-      <div className="relative overflow-hidden bg-[#0E202E]">
-        <img src={commandCentreImage} alt="Enterprise security command centre" className="absolute inset-0 h-full w-full object-cover" />
-        <div className="absolute inset-x-0 bottom-0 bg-[#0B1822]/92 px-3 py-2 text-center text-[11px] font-bold uppercase tracking-[0.08em] text-ey-yellow">
-          Enterprise command centre
+      <div className="flex items-center justify-center px-3">
+        <div className="w-full overflow-hidden rounded-lg border border-[#405A6D] bg-[#0E202E] text-white shadow-xl">
+          <div className="grid grid-cols-3 gap-2 p-3">
+            {[0, 1, 2, 3, 4, 5].map((item) => (
+              <div key={item} className="aspect-[4/3] rounded border border-white/20 bg-[linear-gradient(145deg,#162D3D,#2C5B78)] p-2">
+                <div className="h-1.5 w-1/2 rounded bg-ey-yellow/80" />
+                <div className="mt-2 h-1 w-3/4 rounded bg-white/30" />
+                <div className="mt-1 h-1 w-1/2 rounded bg-white/20" />
+              </div>
+            ))}
+          </div>
+          <div className="bg-[#111B24] px-3 py-2 text-center text-[11px] font-bold uppercase tracking-[0.08em] text-ey-yellow">
+            Enterprise command centre
+          </div>
         </div>
       </div>
     </div>
@@ -128,38 +127,33 @@ function EstablishedVisual() {
 
 function BrownfieldVisual() {
   return (
-    <div className="relative h-[250px] overflow-hidden">
-      <img src={daylightPlantImage} alt="Daylight brownfield power generation plant" className="absolute inset-0 h-full w-full object-cover" />
-      <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(12,28,40,.68)_0%,rgba(12,28,40,.28)_42%,rgba(12,28,40,.08)_62%,rgba(12,28,40,.18)_100%)]" />
+    <div className="grid h-[235px] grid-cols-[34%_18%_48%] bg-[linear-gradient(135deg,#e8e4da_0%,#d2cbbb_48%,#bab09d_100%)]">
+      <div className="flex flex-col justify-center gap-2 px-3">
+        {fragmented.map(({ icon: Icon, label }) => (
+          <div key={label} className="flex h-[34px] items-center gap-2 rounded-md bg-[#28333D]/90 px-2.5 text-white shadow-sm">
+            <span className="flex h-6 w-6 items-center justify-center rounded-full border border-white/70">
+              <Icon className="h-3.5 w-3.5" strokeWidth={1.6} />
+            </span>
+            <span className="text-[10.5px] font-semibold">{label}</span>
+          </div>
+        ))}
+      </div>
 
-      <div className="relative z-[1] grid h-full grid-cols-[34%_16%_50%]">
-        <div className="flex flex-col justify-center gap-2 px-3">
-          {fragmented.map(({ icon: Icon, label }) => (
-            <div key={label} className="flex h-[34px] items-center gap-2 rounded-md bg-[#1E2A34]/90 px-2.5 text-white shadow-sm backdrop-blur-[1px]">
-              <span className="flex h-6 w-6 items-center justify-center rounded-full border border-white/70">
-                <Icon className="h-3.5 w-3.5" strokeWidth={1.6} />
-              </span>
-              <span className="text-[10.5px] font-semibold">{label}</span>
+      <div className="flex items-center justify-center">
+        <div className="flex items-center">
+          <div className="h-1 w-10 bg-ey-yellow" />
+          <span className="h-0 w-0 border-y-[9px] border-l-[14px] border-y-transparent border-l-ey-yellow" />
+        </div>
+      </div>
+
+      <div className="flex items-center justify-center px-3">
+        <div className="grid w-full grid-cols-2 gap-2 rounded-lg border border-ey-yellow bg-[#FFFDF3] p-3 text-[#1A1A24] shadow-lg">
+          {integrated.map(({ icon: Icon, label }) => (
+            <div key={label} className="flex min-h-[58px] flex-col items-center justify-center rounded-md border border-[#E5E0CA] bg-white/70 px-1 text-center">
+              <Icon className="h-5 w-5" strokeWidth={1.5} />
+              <span className="mt-1.5 text-[9.5px] font-semibold leading-[1.05]">{label}</span>
             </div>
           ))}
-        </div>
-
-        <div className="flex items-center justify-center">
-          <div className="flex items-center">
-            <div className="h-1 w-8 bg-ey-yellow" />
-            <span className="h-0 w-0 border-y-[9px] border-l-[14px] border-y-transparent border-l-ey-yellow" />
-          </div>
-        </div>
-
-        <div className="flex items-center justify-center px-3">
-          <div className="grid w-full grid-cols-2 gap-2 rounded-lg border border-ey-yellow bg-[#FFFDF3]/95 p-3 text-[#1A1A24] shadow-lg backdrop-blur-[1px]">
-            {integrated.map(({ icon: Icon, label }) => (
-              <div key={label} className="flex min-h-[58px] flex-col items-center justify-center rounded-md border border-[#E5E0CA] bg-white/80 px-1 text-center">
-                <Icon className="h-5 w-5" strokeWidth={1.5} />
-                <span className="mt-1.5 text-[9.5px] font-semibold leading-[1.05]">{label}</span>
-              </div>
-            ))}
-          </div>
         </div>
       </div>
     </div>
@@ -279,12 +273,12 @@ export function Segments() {
         </div>
 
         <div className="mt-2.5 flex items-center gap-3 rounded-lg border border-[#E2C900] bg-[#FFFDF0] px-4 py-2 text-[#1A1A24]">
-          <CheckCircle2 className="h-6 w-6 shrink-0 text-[#D3AE00]" strokeWidth={1.8} />
-          <div>
-            <p className="text-[11px] font-semibold leading-[1.2]">
+          <CheckCircle2 className="h-6 w-6 shrink-0 text-[#D3AE00]" strokeWidth={1.8} aria-hidden />
+          <div className="min-w-0">
+            <p className="text-[11.5px] font-semibold leading-[1.2]">
               Plant type defines the starting context. Asset criticality, geography and threat exposure then determine the required security posture.
             </p>
-            <p className="mt-0.5 text-[9.8px] leading-[1.2] text-[#575762]">
+            <p className="mt-0.5 text-[10px] leading-[1.2] text-[#5A5A66]">
               The following sections translate this into asset-level security requirements, assessment priorities and operational use cases.
             </p>
           </div>
