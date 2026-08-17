@@ -128,14 +128,16 @@ const capabilityIcons: Record<string, string> = {
 };
 
 const railIcons: Record<string, string> = {
-  "Network segmentation": "network-segmentation",
-  "Firewalls / DMZ": "firewalls-dmz",
-  "Encryption / PKI": "encryption-pki",
+  "Security network segmentation": "network-segmentation",
+  "Firewall / DMZ protection": "firewalls-dmz",
+  "Secure device & edge configuration": "device-hardening",
+  "Controlled system access": "iam-mfa",
+  "Secure remote support": "network-segmentation",
+  "Firmware & patch governance": "patch-management",
+  "Security-system logging / SIEM integration": "logging-siem",
+  "Backup / DR for security systems": "backup-disaster-recovery",
   "IAM / MFA": "iam-mfa",
-  "Device hardening": "device-hardening",
-  "Patch management": "patch-management",
-  "Logging / SIEM": "logging-siem",
-  "Backup / disaster recovery": "backup-disaster-recovery",
+  "PKI / certificates": "encryption-pki",
   "SCADA / DCS": "scada-dcs",
   "Fire alarm & safety systems": "fire-systems",
   ERP: "erp",
@@ -197,7 +199,7 @@ function ArchitectureRail({ side, groups }: { side: "left" | "right"; groups: Ra
         "s06-rail h-auto min-w-0 rounded-lg bg-[#1A1A24] px-3.5 py-3.5 text-white",
         left ? "s06-rail-left" : "s06-rail-right",
       )}
-      aria-label={left ? "Cybersecurity and resilience" : "Enterprise and external integration"}
+      aria-label={left ? "Cyber safeguards for security systems" : "Enterprise and external integration"}
     >
       <div className="s06-rail-header flex items-start gap-2.5">
         <SecurityArchitectureIcon
@@ -205,12 +207,12 @@ function ArchitectureRail({ side, groups }: { side: "left" | "right"; groups: Ra
           tone="dark"
           size={32}
         />
-        <h3 className={cn("font-bold leading-[1.12]", left ? "text-[17px]" : "text-sm")}>
+        <h3 className={cn("font-bold leading-[1.12]", left ? "text-[15px]" : "text-sm")}>
           {left ? (
             <>
-              Cybersecurity
+              Cyber Safeguards for
               <br />
-              &amp; resilience
+              Security Systems
             </>
           ) : (
             <>
