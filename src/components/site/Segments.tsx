@@ -96,11 +96,11 @@ function EstablishedVisual() {
         viewBox="0 0 100 100"
         preserveAspectRatio="none"
       >
-        <path d="M27 26 H38" fill="none" stroke="rgba(255,255,255,0.64)" strokeWidth="0.42" />
-        <path d="M27 50 H38" fill="none" stroke="rgba(255,255,255,0.64)" strokeWidth="0.42" />
-        <path d="M27 74 H38" fill="none" stroke="rgba(255,255,255,0.64)" strokeWidth="0.42" />
-        <path d="M38 26 V74" fill="none" stroke="rgba(255,255,255,0.64)" strokeWidth="0.42" />
-        <path d="M38 50 H43" fill="none" stroke="rgba(255,255,255,0.64)" strokeWidth="0.42" />
+        <path d="M30 26 H36" fill="none" stroke="rgba(255,255,255,0.64)" strokeWidth="0.42" />
+        <path d="M30 50 H36" fill="none" stroke="rgba(255,255,255,0.64)" strokeWidth="0.42" />
+        <path d="M30 74 H36" fill="none" stroke="rgba(255,255,255,0.64)" strokeWidth="0.42" />
+        <path d="M36 26 V74" fill="none" stroke="rgba(255,255,255,0.64)" strokeWidth="0.42" />
+        <path d="M36 50 H40" fill="none" stroke="rgba(255,255,255,0.64)" strokeWidth="0.42" />
       </svg>
 
       {establishedPlants.map((plant, index) => (
@@ -114,11 +114,11 @@ function EstablishedVisual() {
         </div>
       ))}
 
-      <div className="absolute left-[48.5%] top-[39%] z-[4] -translate-x-1/2 whitespace-nowrap text-[7.5px] font-bold uppercase tracking-[0.16em] text-white/88 drop-shadow-[0_1px_2px_rgba(0,0,0,0.85)]">
+      <div className="absolute left-[46%] top-[40%] z-[5] -translate-x-1/2 whitespace-nowrap rounded-sm bg-[#10202D]/68 px-1.5 py-[2px] text-[7.5px] font-bold uppercase tracking-[0.16em] text-white drop-shadow-[0_1px_2px_rgba(0,0,0,0.85)]">
         Enterprise integration
       </div>
 
-      <div className="absolute left-[47%] top-1/2 z-[4] -translate-y-1/2">
+      <div className="absolute left-[44%] top-[52%] z-[4] -translate-y-1/2">
         <div className="flex items-center drop-shadow-[0_2px_2px_rgba(0,0,0,0.4)]">
           <div className="h-[3px] w-8 bg-ey-yellow" />
           <span className="h-0 w-0 border-y-[8px] border-l-[13px] border-y-transparent border-l-ey-yellow" />
