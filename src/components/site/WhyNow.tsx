@@ -210,7 +210,7 @@ export function WhyNow({ embedded = false }: { embedded?: boolean }) {
             className="grid h-full overflow-hidden rounded-xl border border-hairline bg-white"
             style={{
               gridTemplateColumns: "repeat(3, minmax(0, 1fr))",
-              gridTemplateRows: embedded ? "7.25rem 8.25rem 8.25rem 3.75rem" : "7.75rem 8.9375rem 8.9375rem 4rem",
+              gridTemplateRows: embedded ? "7.25rem minmax(0,1fr) minmax(0,1fr) 3.75rem" : "7.75rem 8.9375rem 8.9375rem 4rem",
             }}
           >
             {shifts.map((shift, index) => (
