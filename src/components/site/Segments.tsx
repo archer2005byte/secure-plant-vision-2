@@ -77,6 +77,8 @@ function Pathway({ stages }: { stages: readonly string[] }) {
 }
 
 function EstablishedVisual() {
+  const plantPositions = [24, 46, 68] as const;
+
   return (
     <div className="relative h-[250px] overflow-hidden bg-[#10202D]">
       <div className="absolute inset-y-0 left-0 w-[61%] overflow-hidden">
@@ -85,21 +87,30 @@ function EstablishedVisual() {
           alt="Daylight multi-site power generation estate"
           className="absolute inset-0 h-full w-full object-cover"
         />
-        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(5,18,28,0.56)_0%,rgba(5,18,28,0.25)_48%,rgba(5,18,28,0.05)_78%,rgba(5,18,28,0.22)_100%)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(5,18,28,0.44)_0%,rgba(5,18,28,0.16)_45%,rgba(5,18,28,0.04)_78%,rgba(5,18,28,0.12)_100%)]" />
 
-        <div className="relative z-[1] flex h-full flex-col justify-center gap-5 px-5 pr-14 text-white">
-          {establishedPlants.map((plant) => (
-            <div key={plant} className="flex items-center justify-between gap-4 drop-shadow-[0_2px_3px_rgba(0,0,0,0.9)]">
-              <span className="text-[13px] font-bold tracking-[0.14em]">{plant}</span>
-              <div className="flex items-center gap-4 text-white">
-                <Camera className="h-5 w-5" strokeWidth={1.75} />
-                <Server className="h-5 w-5" strokeWidth={1.75} />
-                <KeyRound className="h-5 w-5" strokeWidth={1.75} />
-                <Network className="h-5 w-5" strokeWidth={1.75} />
-              </div>
-            </div>
-          ))}
-        </div>
+        <svg
+          aria-hidden
+          className="absolute inset-0 z-[1] h-full w-full overflow-visible"
+          viewBox="0 0 100 100"
+          preserveAspectRatio="none"
+        >
+          <path d="M30 29 L87 50" fill="none" stroke="rgba(255,255,255,0.78)" strokeWidth="0.8" strokeDasharray="2.2 2.2" />
+          <path d="M30 51 L87 50" fill="none" stroke="rgba(255,255,255,0.78)" strokeWidth="0.8" strokeDasharray="2.2 2.2" />
+          <path d="M30 73 L87 50" fill="none" stroke="rgba(255,255,255,0.78)" strokeWidth="0.8" strokeDasharray="2.2 2.2" />
+          <circle cx="87" cy="50" r="2.2" fill="#ffffff" />
+        </svg>
+
+        {establishedPlants.map((plant, index) => (
+          <div
+            key={plant}
+            className="absolute left-5 z-[2] flex -translate-y-1/2 items-center gap-2.5 text-white drop-shadow-[0_2px_3px_rgba(0,0,0,0.95)]"
+            style={{ top: `${plantPositions[index]}%` }}
+          >
+            <Building2 className="h-5 w-5 shrink-0" strokeWidth={1.7} />
+            <span className="text-[13px] font-bold tracking-[0.14em]">{plant}</span>
+          </div>
+        ))}
       </div>
 
       <div className="absolute inset-y-0 right-0 w-[39%] overflow-hidden">
@@ -108,16 +119,15 @@ function EstablishedVisual() {
           alt="Enterprise security command centre with operators and video wall"
           className="absolute inset-0 h-full w-full object-cover"
         />
-        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(8,22,32,0.02)_0%,rgba(8,22,32,0.05)_58%,rgba(8,22,32,0.82)_100%)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(8,22,32,0.02)_0%,rgba(8,22,32,0.04)_58%,rgba(8,22,32,0.78)_100%)]" />
         <div className="absolute inset-x-0 bottom-0 z-[1] px-3 pb-2.5 pt-8 text-center text-[11px] font-bold uppercase tracking-[0.08em] text-ey-yellow drop-shadow-[0_2px_2px_rgba(0,0,0,0.9)]">
           Enterprise command centre
         </div>
       </div>
 
-      <div className="absolute left-[56.5%] top-1/2 z-[2] -translate-x-1/2 -translate-y-1/2">
+      <div className="absolute left-[54%] top-1/2 z-[3] -translate-x-1/2 -translate-y-1/2">
         <div className="flex items-center drop-shadow-[0_2px_2px_rgba(0,0,0,0.35)]">
-          <div className="w-10 border-t-2 border-dashed border-white/80" />
-          <div className="h-1 w-9 bg-ey-yellow" />
+          <div className="h-1 w-10 bg-ey-yellow" />
           <span className="h-0 w-0 border-y-[9px] border-l-[14px] border-y-transparent border-l-ey-yellow" />
         </div>
       </div>
@@ -133,31 +143,31 @@ function BrownfieldVisual() {
         alt="Daylight brownfield power generation plant"
         className="absolute inset-0 h-full w-full object-cover"
       />
-      <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(17,25,31,0.62)_0%,rgba(17,25,31,0.38)_31%,rgba(17,25,31,0.08)_53%,rgba(245,241,226,0.30)_72%,rgba(245,241,226,0.48)_100%)]" />
+      <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(17,25,31,0.44)_0%,rgba(17,25,31,0.22)_30%,rgba(17,25,31,0.06)_52%,rgba(17,25,31,0.14)_72%,rgba(17,25,31,0.34)_100%)]" />
 
       <div className="absolute inset-y-0 left-0 z-[1] flex w-[35%] flex-col justify-center gap-3 px-4 text-white">
         {fragmented.map(({ icon: Icon, label }) => (
-          <div key={label} className="flex items-center gap-3 drop-shadow-[0_2px_3px_rgba(0,0,0,0.9)]">
+          <div key={label} className="flex items-center gap-3 drop-shadow-[0_2px_3px_rgba(0,0,0,0.95)]">
             <Icon className="h-5 w-5 shrink-0" strokeWidth={1.75} />
             <span className="text-[11px] font-semibold">{label}</span>
           </div>
         ))}
       </div>
 
-      <div className="absolute left-[48%] top-1/2 z-[2] -translate-x-1/2 -translate-y-1/2">
+      <div className="absolute left-[49%] top-1/2 z-[2] -translate-x-1/2 -translate-y-1/2">
         <div className="flex items-center drop-shadow-[0_2px_2px_rgba(0,0,0,0.35)]">
-          <div className="w-10 border-t-2 border-dashed border-white/80" />
-          <div className="h-1 w-9 bg-ey-yellow" />
+          <div className="w-8 border-t-2 border-dashed border-white/80" />
+          <div className="h-1 w-8 bg-ey-yellow" />
           <span className="h-0 w-0 border-y-[9px] border-l-[14px] border-y-transparent border-l-ey-yellow" />
         </div>
       </div>
 
-      <div className="absolute inset-y-0 right-0 z-[1] flex w-[46%] items-center justify-center pr-3">
-        <div className="grid w-full grid-cols-2 gap-2 rounded-xl border border-ey-yellow bg-[#FFFDF3]/88 p-2.5 text-[#1A1A24] shadow-xl backdrop-blur-[1px]">
+      <div className="absolute inset-y-0 right-0 z-[1] flex w-[44%] items-center pr-4 text-white">
+        <div className="grid w-full grid-cols-2 gap-x-5 gap-y-5">
           {integrated.map(({ icon: Icon, label }) => (
-            <div key={label} className="flex min-h-[56px] flex-col items-center justify-center rounded-md border border-[#DED8C5]/90 bg-white/78 px-1 text-center">
-              <Icon className="h-5 w-5" strokeWidth={1.5} />
-              <span className="mt-1.5 text-[9.5px] font-semibold leading-[1.05]">{label}</span>
+            <div key={label} className="flex min-w-0 flex-col items-center text-center drop-shadow-[0_2px_3px_rgba(0,0,0,0.95)]">
+              <Icon className="h-5 w-5 text-ey-yellow" strokeWidth={1.7} />
+              <span className="mt-1.5 text-[9.8px] font-semibold leading-[1.08] text-white">{label}</span>
             </div>
           ))}
         </div>
