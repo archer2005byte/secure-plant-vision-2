@@ -5,6 +5,7 @@ import { DeckNavigation } from "@/components/site/DeckNavigation";
 import { Hero } from "@/components/site/Hero";
 import { WhyNowWithRails } from "@/components/site/WhyNowWithRails";
 import { Segments } from "@/components/site/Segments";
+import { ImagePipelineProbe } from "@/components/site/ImagePipelineProbe";
 import { PlantBlocks } from "@/components/site/PlantBlocks";
 import { AsIsAssessment } from "@/components/site/AsIsAssessment";
 import { ToBeArchitecture } from "@/components/site/ToBeArchitecture";
@@ -43,6 +44,7 @@ function Index() {
       <main>
         <Hero />
         <WhyNowWithRails />
+        <ImagePipelineProbe />
         <Segments />
         <PlantBlocks />
         <AsIsAssessment />
