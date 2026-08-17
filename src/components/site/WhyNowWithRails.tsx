@@ -107,9 +107,9 @@ export function WhyNowWithRails() {
 
   return (
     <div className="relative h-[calc(100vh-5.75rem)] overflow-hidden bg-ey-cream">
-      <div className="mx-auto hidden h-full w-full max-w-[110rem] grid-cols-[13.75rem_minmax(0,1fr)_13.75rem] gap-2 px-2 xl:grid">
-        <aside className="pt-5" aria-label="Recent power-sector security incidents">
-          <div className="rounded-xl border border-hairline bg-white/95 p-2.5 shadow-sm">
+      <div className="mx-auto hidden h-full w-full max-w-[112rem] grid-cols-[14.5rem_minmax(0,1fr)_14.5rem] gap-3 px-3 xl:grid">
+        <aside className="pt-[8.9rem]" aria-label="Recent power-sector security incidents">
+          <div className="h-[33.25rem] overflow-y-auto rounded-xl border border-hairline bg-white/95 p-2.5 shadow-sm">
             <div className="mb-2 flex items-center gap-2 border-b border-hairline pb-2">
               <Newspaper className="h-4 w-4 text-ey-gold" aria-hidden="true" />
               <div>
@@ -150,14 +150,14 @@ export function WhyNowWithRails() {
           </div>
         </aside>
 
-        <div className="min-w-0 overflow-hidden">
+        <div className="min-w-0 overflow-hidden [&_button[aria-controls='why-now-more-information']]:hidden">
           <div className="origin-top" style={{ transform: "scale(0.82)", width: "121.95%", marginLeft: "-10.975%" }}>
             <WhyNow />
           </div>
         </div>
 
-        <aside className="pt-5" aria-label="Applicable physical-security standards and power-sector regulations">
-          <div className="rounded-xl border border-hairline bg-white/95 p-2.5 shadow-sm">
+        <aside className="pt-[8.9rem]" aria-label="Applicable physical-security standards and power-sector regulations">
+          <div className="h-[33.25rem] overflow-y-auto rounded-xl border border-hairline bg-white/95 p-2.5 shadow-sm">
             <div className="mb-2 flex items-center gap-2 border-b border-hairline pb-2">
               <ShieldCheck className="h-4 w-4 text-ey-gold" aria-hidden="true" />
               <div>
