@@ -189,9 +189,9 @@ function CapabilityBand() {
     { icon: ShieldCheck, label: "Governance & compliance" },
   ] as const;
   return (
-    <div className="grid grid-cols-4 divide-x divide-white/15 bg-[#10202D] text-white">
+    <div className="grid h-[42px] grid-cols-4 divide-x divide-white/15 bg-[#10202D] text-white">
       {items.map(({ icon: Icon, label }) => (
-        <div key={label} className="flex items-center justify-center gap-2 px-2 py-2.5 text-center">
+        <div key={label} className="flex h-full items-center justify-center gap-2 px-2 text-center">
           <Icon className="h-4.5 w-4.5 shrink-0 text-white" strokeWidth={1.7} />
           <span className="text-[10px] font-semibold leading-[1.08]">{label}</span>
         </div>
@@ -236,10 +236,10 @@ export function Segments() {
               <span className="text-[11px] font-bold text-ey-yellow">Standalone / brownfield</span>
             </div>
             <BrownfieldVisual />
-            <div className="grid grid-cols-3 divide-x divide-[#D7D2BF] bg-[#EEE8D9] text-[#1A1A24]">
-              <div className="px-2 py-2 text-center text-[9.5px] font-semibold">Fragmented systems</div>
-              <div className="px-2 py-2 text-center text-[9.5px] font-semibold">Phased integration</div>
-              <div className="px-2 py-2 text-center text-[9.5px] font-semibold">Unified security estate</div>
+            <div className="grid h-[42px] grid-cols-3 divide-x divide-[#D7D2BF] bg-[#EEE8D9] text-[#1A1A24]">
+              <div className="flex h-full items-center justify-center px-2 text-center text-[9.5px] font-semibold">Fragmented systems</div>
+              <div className="flex h-full items-center justify-center px-2 text-center text-[9.5px] font-semibold">Phased integration</div>
+              <div className="flex h-full items-center justify-center px-2 text-center text-[9.5px] font-semibold">Unified security estate</div>
             </div>
           </div>
         </div>
