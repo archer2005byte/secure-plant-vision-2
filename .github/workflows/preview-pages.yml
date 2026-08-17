@@ -1,0 +1,82 @@
+name: Preview pull request on GitHub Pages
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages-preview"
+  cancel-in-progress: true
+
+jobs:
+  build-preview:
+    if: github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout production branch
+        uses: actions/checkout@v6
+        with:
+          ref: main
+          path: prod
+
+      - name: Checkout pull request branch
+        uses: actions/checkout@v6
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          path: preview
+
+      - name: Setup Node
+        uses: actions/setup-node@v5
+        with:
+          node-version: "22.12.0"
+          cache: npm
+          cache-dependency-path: |
+            prod/package-lock.json
+            preview/package-lock.json
+
+      - name: Install production dependencies
+        working-directory: prod
+        run: npm ci
+
+      - name: Build production site
+        working-directory: prod
+        run: npm run build
+
+      - name: Install preview dependencies
+        working-directory: preview
+        run: npm ci
+
+      - name: Build pull request preview
+        working-directory: preview
+        env:
+          VITE_PUBLIC_BASE: /secure-plant-vision-2/previews/pr-${{ github.event.pull_request.number }}/
+        run: npm run build
+
+      - name: Assemble Pages artifact
+        shell: bash
+        run: |
+          mkdir -p site/previews/pr-${{ github.event.pull_request.number }}
+          cp -a prod/dist/client/. site/
+          cp -a preview/dist/client/. site/previews/pr-${{ github.event.pull_request.number }}/
+          touch site/.nojekyll
+
+      - name: Upload GitHub Pages artifact
+        uses: actions/upload-pages-artifact@v5
+        with:
+          path: site
+          include-hidden-files: true
+
+  deploy-preview:
+    needs: build-preview
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: https://${{ github.repository_owner }}.github.io/secure-plant-vision-2/previews/pr-${{ github.event.pull_request.number }}/
+    steps:
+      - name: Deploy preview alongside production
+        uses: actions/deploy-pages@v5
