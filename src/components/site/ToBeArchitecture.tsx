@@ -138,7 +138,7 @@ const railIcons: Record<string, string> = {
   "Backup / DR for security systems": "backup-disaster-recovery",
   "IAM / MFA": "iam-mfa",
   "PKI / certificates": "encryption-pki",
-  "SIEM integration": "logging-siem",
+  "SIEM integration": "cyber-soc",
   "SCADA / DCS": "scada-dcs",
   "Fire alarm & safety systems": "fire-systems",
   ERP: "erp",
@@ -238,6 +238,13 @@ function ArchitectureRail({ side, groups }: { side: "left" | "right"; groups: Ra
             <ul className="s06-rail-list">
               {group.items.map((item) => {
                 const explainsRegulation = item.label === "Regulatory & statutory authorities";
+                const railIconName =
+                  railIcons[item.label] ??
+                  (item.label === "Audit logging & traceability"
+                    ? "audit-trails"
+                    : item.label === "SIEM integration"
+                      ? "cyber-soc"
+                      : "system-health");
                 return (
                   <li
                     key={item.label}
@@ -246,7 +253,7 @@ function ArchitectureRail({ side, groups }: { side: "left" | "right"; groups: Ra
                       explainsRegulation && "s06-regulatory-item relative",
                     )}
                   >
-                    <SecurityArchitectureIcon name={railIcons[item.label]!} tone="dark" size={20} />
+                    <SecurityArchitectureIcon name={railIconName} tone="dark" size={20} />
                     <span className="s06-rail-label min-w-0 font-semibold text-white">
                       {explainsRegulation ? (
                         <>
