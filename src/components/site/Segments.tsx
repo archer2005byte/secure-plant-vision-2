@@ -1,6 +1,6 @@
 import approvedSection3Base64 from "@/assets/section3-approved.webp?raw";
 
-const approvedSection3 = `data:image/webp;base64,${approvedSection3Base64.trim()}`;
+const approvedSection3 = `data:image/webp;base64,${approvedSection3Base64.replace(/\s+/g, "")}`;
 
 export function Segments() {
   return (
