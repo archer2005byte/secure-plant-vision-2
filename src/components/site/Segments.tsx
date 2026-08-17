@@ -12,6 +12,7 @@ import {
   ShieldCheck,
   Target,
 } from "lucide-react";
+import heroPowerPlant from "@/assets/hero-power-plant.jpg";
 
 const establishedPlants = ["PLANT A", "PLANT B", "PLANT C"] as const;
 const fragmented = [
@@ -75,11 +76,18 @@ function Pathway({ stages }: { stages: readonly string[] }) {
 
 function EstablishedVisual() {
   return (
-    <div className="grid h-[235px] grid-cols-[34%_18%_48%] bg-[linear-gradient(135deg,#dce6ec_0%,#b7c8d3_48%,#91a7b6_100%)]">
-      <div className="flex flex-col justify-center gap-2 px-3">
+    <div className="relative grid h-[235px] grid-cols-[34%_18%_48%] overflow-hidden bg-[#91a7b6]">
+      <img
+        src={heroPowerPlant}
+        alt="Power generation plant"
+        className="absolute inset-0 h-full w-full object-cover"
+      />
+      <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(9,31,46,0.18)_0%,rgba(9,31,46,0.30)_48%,rgba(9,31,46,0.62)_100%)]" />
+
+      <div className="relative z-[1] flex flex-col justify-center gap-2 px-3">
         {establishedPlants.map((plant) => (
-          <div key={plant} className="grid h-[54px] grid-cols-[56%_44%] overflow-hidden rounded-md border border-white/55 bg-[#173047]/90 text-white shadow-sm">
-            <div className="flex items-end gap-2 border-r border-white/20 bg-[#233f55]/90 px-2 py-2">
+          <div key={plant} className="grid h-[54px] grid-cols-[56%_44%] overflow-hidden rounded-md border border-white/55 bg-[#173047]/88 text-white shadow-sm backdrop-blur-[1px]">
+            <div className="flex items-end gap-2 border-r border-white/20 bg-[#233f55]/82 px-2 py-2">
               <Building2 className="h-5 w-5" strokeWidth={1.5} />
               <span className="text-[11px] font-bold tracking-[0.08em]">{plant}</span>
             </div>
@@ -93,9 +101,9 @@ function EstablishedVisual() {
         ))}
       </div>
 
-      <div className="flex items-center justify-center">
+      <div className="relative z-[1] flex items-center justify-center">
         <div className="flex flex-col items-center gap-3">
-          <div className="flex h-16 w-16 items-center justify-center rounded-full border-2 border-white bg-[#294A63] text-white shadow-lg">
+          <div className="flex h-16 w-16 items-center justify-center rounded-full border-2 border-white bg-[#294A63]/92 text-white shadow-lg">
             <ShieldCheck className="h-8 w-8" strokeWidth={1.6} />
           </div>
           <div className="flex items-center">
@@ -105,8 +113,8 @@ function EstablishedVisual() {
         </div>
       </div>
 
-      <div className="flex items-center justify-center px-3">
-        <div className="w-full overflow-hidden rounded-lg border border-[#405A6D] bg-[#0E202E] text-white shadow-xl">
+      <div className="relative z-[1] flex items-center justify-center px-3">
+        <div className="w-full overflow-hidden rounded-lg border border-[#405A6D] bg-[#0E202E]/94 text-white shadow-xl backdrop-blur-[1px]">
           <div className="grid grid-cols-3 gap-2 p-3">
             {[0, 1, 2, 3, 4, 5].map((item) => (
               <div key={item} className="aspect-[4/3] rounded border border-white/20 bg-[linear-gradient(145deg,#162D3D,#2C5B78)] p-2">
