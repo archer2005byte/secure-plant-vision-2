@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ChevronDown, ChevronUp, Newspaper, ShieldCheck } from "lucide-react";
+import { ChevronRight, Newspaper, ShieldCheck, X } from "lucide-react";
 import { WhyNow } from "./WhyNow";
 
 const incidents = [
@@ -97,20 +97,42 @@ const indiaContext = [
   },
 ] as const;
 
-export function WhyNowWithRails() {
-  const [openIncident, setOpenIncident] = useState<number | null>(null);
-  const [openStandard, setOpenStandard] = useState<string | null>(null);
+type DetailCard = { title: string; subtitle?: string; body: string; source?: string; side: "left" | "right" };
 
-  const toggleStandard = (code: string) => {
-    setOpenStandard((current) => (current === code ? null : code));
-  };
+export function WhyNowWithRails() {
+  const [detailCard, setDetailCard] = useState<DetailCard | null>(null);
+
+  const openIncident = (incident: (typeof incidents)[number]) =>
+    setDetailCard({
+      title: incident.headline,
+      subtitle: `${incident.tag} · ${incident.place}`,
+      body: incident.detail,
+      source: incident.source,
+      side: "left",
+    });
+
+  const openStandard = (item: (typeof standards)[number] | (typeof indiaContext)[number]) =>
+    setDetailCard({ title: item.code, subtitle: item.label, body: item.detail, side: "right" });
 
   return (
-    <div className="relative h-[calc(100vh-5.75rem)] overflow-hidden bg-ey-cream">
-      <div className="mx-auto hidden h-full w-full max-w-[112rem] grid-cols-[14.5rem_minmax(0,1fr)_14.5rem] gap-3 px-3 xl:grid">
-        <aside className="pt-[8.9rem]" aria-label="Recent power-sector security incidents">
-          <div className="h-[33.25rem] overflow-y-auto rounded-xl border border-hairline bg-white/95 p-2.5 shadow-sm">
-            <div className="mb-2 flex items-center gap-2 border-b border-hairline pb-2">
+    <section id="why-now" className="relative h-[calc(100vh-5.75rem)] overflow-hidden bg-ey-cream text-foreground">
+      <div className="mx-auto hidden h-full w-full max-w-[112rem] px-4 py-4 xl:block">
+        <header className="mx-auto max-w-[100rem]">
+          <p className="flex items-center gap-3 text-base font-semibold uppercase tracking-[0.22em] text-ey-green-deep">
+            <span aria-hidden className="h-3 w-1.5 shrink-0 rounded-sm bg-ey-yellow" />
+            Section 02
+          </p>
+          <h2 className="text-[2.25rem] font-semibold leading-tight text-ey-green-deep">
+            Why plant security architecture must change now
+          </h2>
+          <p className="mt-1 text-base leading-[1.3] text-muted-foreground">
+            Exposure is widening, plant risk remains uneven, and security performance is becoming measurable.
+          </p>
+        </header>
+
+        <div className="relative mx-auto mt-3 grid h-[31.5rem] max-w-[110rem] grid-cols-[14.25rem_minmax(0,1fr)_14.25rem] gap-3">
+          <aside aria-label="Recent power-sector security incidents" className="h-full rounded-xl border border-hairline bg-white/95 p-2.5 shadow-sm">
+            <div className="flex items-center gap-2 border-b border-hairline pb-2">
               <Newspaper className="h-4 w-4 text-ey-gold" aria-hidden="true" />
               <div>
                 <p className="text-[0.62rem] font-bold uppercase tracking-[0.18em] text-ey-gold">Evidence</p>
@@ -118,47 +140,31 @@ export function WhyNowWithRails() {
               </div>
             </div>
 
-            <div className="space-y-1.5">
-              {incidents.map((incident, index) => {
-                const isOpen = openIncident === index;
-                return (
-                  <button
-                    key={incident.headline}
-                    type="button"
-                    onClick={() => setOpenIncident(isOpen ? null : index)}
-                    className="w-full rounded-lg border border-hairline bg-ey-cream/55 p-2 text-left transition hover:border-ey-gold/70 hover:bg-white"
-                    aria-expanded={isOpen}
-                  >
-                    <div className="flex items-start justify-between gap-2">
-                      <div>
-                        <p className="text-[0.54rem] font-bold uppercase tracking-[0.12em] text-ey-gold">{incident.tag}</p>
-                        <p className="mt-0.5 text-[0.62rem] font-semibold text-muted-foreground">{incident.place}</p>
-                      </div>
-                      {isOpen ? <ChevronUp className="mt-0.5 h-3 w-3 shrink-0" /> : <ChevronDown className="mt-0.5 h-3 w-3 shrink-0" />}
-                    </div>
+            <div className="mt-2 grid h-[calc(100%-3.1rem)] grid-rows-4 gap-2">
+              {incidents.map((incident) => (
+                <button
+                  key={incident.headline}
+                  type="button"
+                  onClick={() => openIncident(incident)}
+                  className="group flex h-full w-full items-center justify-between rounded-lg border border-hairline bg-ey-cream/55 px-2.5 py-2 text-left transition hover:border-ey-gold/70 hover:bg-white"
+                >
+                  <div className="min-w-0">
+                    <p className="text-[0.54rem] font-bold uppercase tracking-[0.12em] text-ey-gold">{incident.tag}</p>
+                    <p className="mt-0.5 text-[0.61rem] font-semibold text-muted-foreground">{incident.place}</p>
                     <p className="mt-1 text-[0.71rem] font-semibold leading-[1.2] text-ey-green-deep">{incident.headline}</p>
-                    {isOpen && (
-                      <div className="mt-1.5 border-t border-hairline pt-1.5">
-                        <p className="text-[0.64rem] leading-[1.3] text-muted-foreground">{incident.detail}</p>
-                        <p className="mt-1 text-[0.58rem] font-semibold text-foreground/65">Source: {incident.source}</p>
-                      </div>
-                    )}
-                  </button>
-                );
-              })}
+                  </div>
+                  <ChevronRight className="ml-2 h-3.5 w-3.5 shrink-0 text-muted-foreground transition group-hover:text-ey-gold" aria-hidden="true" />
+                </button>
+              ))}
             </div>
-          </div>
-        </aside>
+          </aside>
 
-        <div className="min-w-0 overflow-hidden [&_button[aria-controls='why-now-more-information']]:hidden">
-          <div className="origin-top" style={{ transform: "scale(0.82)", width: "121.95%", marginLeft: "-10.975%" }}>
-            <WhyNow />
+          <div className="min-w-0 h-full">
+            <WhyNow embedded />
           </div>
-        </div>
 
-        <aside className="pt-[8.9rem]" aria-label="Applicable physical-security standards and power-sector regulations">
-          <div className="h-[33.25rem] overflow-y-auto rounded-xl border border-hairline bg-white/95 p-2.5 shadow-sm">
-            <div className="mb-2 flex items-center gap-2 border-b border-hairline pb-2">
+          <aside aria-label="Applicable physical-security standards and power-sector regulations" className="h-full rounded-xl border border-hairline bg-white/95 p-2.5 shadow-sm">
+            <div className="flex items-center gap-2 border-b border-hairline pb-2">
               <ShieldCheck className="h-4 w-4 text-ey-gold" aria-hidden="true" />
               <div>
                 <p className="text-[0.62rem] font-bold uppercase tracking-[0.18em] text-ey-gold">Standards</p>
@@ -166,78 +172,82 @@ export function WhyNowWithRails() {
               </div>
             </div>
 
-            <div className="space-y-1">
-              {standards.map((item, index) => {
-                const isOpen = openStandard === item.code;
-                return (
-                  <button
-                    key={item.code}
-                    type="button"
-                    onClick={() => toggleStandard(item.code)}
-                    aria-expanded={isOpen}
-                    className={
-                      index === 0
-                        ? "w-full rounded-md border-l-4 border-ey-yellow bg-ey-green-deep px-2 py-1.5 text-left text-white"
-                        : "w-full rounded-md border border-hairline bg-ey-cream/55 px-2 py-1.5 text-left transition hover:border-ey-gold/70 hover:bg-white"
-                    }
-                  >
-                    <div className="flex items-start justify-between gap-2">
-                      <div>
-                        <p className="text-[0.69rem] font-bold leading-tight">{item.code}</p>
-                        <p className={index === 0 ? "mt-0.5 text-[0.57rem] leading-tight text-white/75" : "mt-0.5 text-[0.57rem] leading-tight text-muted-foreground"}>{item.label}</p>
-                      </div>
-                      {isOpen ? <ChevronUp className="mt-0.5 h-3 w-3 shrink-0" /> : <ChevronDown className="mt-0.5 h-3 w-3 shrink-0" />}
-                    </div>
-                    {isOpen && (
-                      <div className={index === 0 ? "mt-1.5 border-t border-white/20 pt-1.5" : "mt-1.5 border-t border-hairline pt-1.5"}>
-                        <p className={index === 0 ? "text-[0.58rem] leading-[1.3] text-white/80" : "text-[0.58rem] leading-[1.3] text-muted-foreground"}>{item.detail}</p>
-                      </div>
-                    )}
-                  </button>
-                );
-              })}
+            <div className="mt-2 space-y-1">
+              {standards.map((item, index) => (
+                <button
+                  key={item.code}
+                  type="button"
+                  onClick={() => openStandard(item)}
+                  className={
+                    index === 0
+                      ? "group flex w-full items-center justify-between rounded-md border-l-4 border-ey-yellow bg-ey-green-deep px-2 py-1.5 text-left text-white"
+                      : "group flex w-full items-center justify-between rounded-md border border-hairline bg-ey-cream/55 px-2 py-1.5 text-left transition hover:border-ey-gold/70 hover:bg-white"
+                  }
+                >
+                  <div>
+                    <p className="text-[0.68rem] font-bold leading-tight">{item.code}</p>
+                    <p className={index === 0 ? "mt-0.5 text-[0.56rem] leading-tight text-white/75" : "mt-0.5 text-[0.56rem] leading-tight text-muted-foreground"}>{item.label}</p>
+                  </div>
+                  <ChevronRight className={index === 0 ? "h-3 w-3 shrink-0 text-white/60" : "h-3 w-3 shrink-0 text-muted-foreground group-hover:text-ey-gold"} aria-hidden="true" />
+                </button>
+              ))}
             </div>
 
             <div className="my-2 flex items-center gap-1.5">
               <div className="h-px flex-1 bg-hairline" />
-              <span className="text-[0.52rem] font-bold uppercase tracking-[0.12em] text-muted-foreground">India / power sector</span>
+              <span className="text-[0.51rem] font-bold uppercase tracking-[0.11em] text-muted-foreground">India / power sector</span>
               <div className="h-px flex-1 bg-hairline" />
             </div>
 
             <div className="space-y-1">
-              {indiaContext.map((item) => {
-                const isOpen = openStandard === item.code;
-                return (
-                  <button
-                    key={item.code}
-                    type="button"
-                    onClick={() => toggleStandard(item.code)}
-                    aria-expanded={isOpen}
-                    className="w-full rounded-md border border-hairline bg-white px-2 py-1.5 text-left transition hover:border-ey-gold/70"
-                  >
-                    <div className="flex items-start justify-between gap-2">
-                      <div>
-                        <p className="text-[0.66rem] font-bold leading-tight text-ey-green-deep">{item.code}</p>
-                        <p className="mt-0.5 text-[0.55rem] leading-tight text-muted-foreground">{item.label}</p>
-                      </div>
-                      {isOpen ? <ChevronUp className="mt-0.5 h-3 w-3 shrink-0" /> : <ChevronDown className="mt-0.5 h-3 w-3 shrink-0" />}
-                    </div>
-                    {isOpen && (
-                      <div className="mt-1.5 border-t border-hairline pt-1.5">
-                        <p className="text-[0.57rem] leading-[1.3] text-muted-foreground">{item.detail}</p>
-                      </div>
-                    )}
-                  </button>
-                );
-              })}
+              {indiaContext.map((item) => (
+                <button
+                  key={item.code}
+                  type="button"
+                  onClick={() => openStandard(item)}
+                  className="group flex w-full items-center justify-between rounded-md border border-hairline bg-white px-2 py-1.5 text-left transition hover:border-ey-gold/70"
+                >
+                  <div>
+                    <p className="text-[0.64rem] font-bold leading-tight text-ey-green-deep">{item.code}</p>
+                    <p className="mt-0.5 text-[0.53rem] leading-tight text-muted-foreground">{item.label}</p>
+                  </div>
+                  <ChevronRight className="h-3 w-3 shrink-0 text-muted-foreground group-hover:text-ey-gold" aria-hidden="true" />
+                </button>
+              ))}
             </div>
-          </div>
-        </aside>
+          </aside>
+
+          {detailCard && (
+            <div
+              className={
+                detailCard.side === "left"
+                  ? "absolute left-[14.9rem] top-5 z-20 w-[22rem] rounded-xl border border-ey-gold/35 bg-white p-4 shadow-xl"
+                  : "absolute right-[14.9rem] top-5 z-20 w-[22rem] rounded-xl border border-ey-gold/35 bg-white p-4 shadow-xl"
+              }
+              role="dialog"
+              aria-modal="false"
+              aria-label={detailCard.title}
+            >
+              <button
+                type="button"
+                onClick={() => setDetailCard(null)}
+                className="absolute right-2.5 top-2.5 rounded-md p-1 text-muted-foreground hover:bg-ey-cream hover:text-foreground"
+                aria-label="Close information card"
+              >
+                <X className="h-4 w-4" />
+              </button>
+              {detailCard.subtitle && <p className="pr-7 text-[0.66rem] font-bold uppercase tracking-[0.12em] text-ey-gold">{detailCard.subtitle}</p>}
+              <h4 className="mt-1 pr-7 text-lg font-semibold leading-tight text-ey-green-deep">{detailCard.title}</h4>
+              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{detailCard.body}</p>
+              {detailCard.source && <p className="mt-3 border-t border-hairline pt-2 text-xs font-semibold text-foreground/65">Source: {detailCard.source}</p>}
+            </div>
+          )}
+        </div>
       </div>
 
       <div className="xl:hidden">
         <WhyNow />
       </div>
-    </div>
+    </section>
   );
 }
