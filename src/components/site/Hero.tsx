@@ -1,11 +1,11 @@
-import { ArrowRight, ShieldCheck } from "lucide-react";
+import { ArrowRight, BarChart3, ShieldCheck, Siren, Users } from "lucide-react";
 import heroImage from "@/assets/hero-power-plant.jpg";
 
 const markers = [
-  "Perimeter & Asset Protection",
-  "Workforce & Access",
-  "Operational Intelligence",
-  "Command & Response",
+  { label: "Perimeter & Asset Protection", icon: ShieldCheck },
+  { label: "Workforce & Access", icon: Users },
+  { label: "Operational Intelligence", icon: BarChart3 },
+  { label: "Command & Response", icon: Siren },
 ];
 
 export function Hero() {
@@ -54,16 +54,27 @@ export function Hero() {
               <ArrowRight className="h-4 w-4" />
             </a>
           </div>
-          <dl className="mt-6 grid max-w-2xl grid-cols-2 gap-px overflow-hidden rounded-lg border border-navy-foreground/15 bg-navy-foreground/10 sm:grid-cols-4">
-            {markers.map((m) => (
-              <div key={m} className="bg-navy/70 px-4 py-4">
-                <dt className="text-base uppercase tracking-[0.14em] text-brand">Focus</dt>
-                <dd className="mt-1.5 text-base font-medium leading-snug text-navy-foreground md:text-base">
-                  {m}
-                </dd>
-              </div>
-            ))}
-          </dl>
+
+          <div className="mt-6 max-w-2xl overflow-hidden rounded-lg border border-navy-foreground/15 bg-navy/70">
+            <div className="flex items-center gap-4 px-5 py-2.5">
+              <span className="h-px flex-1 bg-brand/45" aria-hidden="true" />
+              <p className="text-sm font-semibold uppercase tracking-[0.22em] text-brand">Focus</p>
+              <span className="h-px flex-1 bg-brand/45" aria-hidden="true" />
+            </div>
+            <dl className="grid grid-cols-2 border-t border-navy-foreground/10 sm:grid-cols-4">
+              {markers.map(({ label, icon: Icon }, index) => (
+                <div
+                  key={label}
+                  className={`flex min-h-28 flex-col items-center justify-center px-4 py-4 text-center ${index > 0 ? "sm:border-l sm:border-navy-foreground/10" : ""}`}
+                >
+                  <Icon className="h-6 w-6 text-brand" aria-hidden="true" />
+                  <dd className="mt-2 text-base font-medium leading-snug text-navy-foreground">
+                    {label}
+                  </dd>
+                </div>
+              ))}
+            </dl>
+          </div>
         </div>
       </div>
     </section>
