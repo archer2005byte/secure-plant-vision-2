@@ -558,8 +558,9 @@ export function AsIsAssessment() {
                           y={indexPosition.y}
                           textAnchor="middle"
                           dominantBaseline="middle"
-                          fill={isActive ? "#B39B00" : "#8A8A95"}
-                          className={cn("text-[8px] font-semibold", isActive && "font-bold")}
+                          fill={isActive ? "#FFE600" : "#8A8A95"}
+                          fontWeight={isActive ? 800 : 600}
+                          className={isActive ? "text-[9px]" : "text-[8px]"}
                         >
                           {domain.number}
                         </text>
@@ -648,12 +649,12 @@ export function AsIsAssessment() {
               </ol>
             </div>
 
-            <div className="border-t border-white/10 px-4 py-2.5">
-              <div className="flex items-center justify-between gap-3">
-                <p className="text-[9px] font-bold uppercase tracking-[0.14em] text-ey-yellow">Evidence & tests</p>
-                <div className="flex flex-wrap justify-end gap-1.5">
+            <div className="border-t border-white/10 px-4 py-2">
+              <div className="flex h-[34px] items-center gap-2.5">
+                <p className="shrink-0 whitespace-nowrap text-[8.5px] font-bold uppercase tracking-[0.13em] text-ey-yellow">Evidence & tests</p>
+                <div className="flex min-w-0 flex-1 flex-nowrap justify-end gap-1">
                   {active.evidence.map((item) => (
-                    <span key={item} className="rounded-full border border-white/15 px-2 py-1 text-[8.5px] font-medium text-white/72">{item}</span>
+                    <span key={item} className="whitespace-nowrap rounded-full border border-white/15 px-1.5 py-0.5 text-[7.5px] font-medium text-white/72">{item}</span>
                   ))}
                 </div>
               </div>
