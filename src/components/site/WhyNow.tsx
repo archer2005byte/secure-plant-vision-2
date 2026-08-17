@@ -177,35 +177,40 @@ function StrategicImplication({ shift }: { shift: Shift }) {
   );
 }
 
-export function WhyNow() {
+export function WhyNow({ embedded = false }: { embedded?: boolean }) {
   return (
     <section
-      id="why-now"
-      style={{ paddingBlock: "1.25rem" }}
-      className="scroll-mt-24 min-h-[calc(100vh-5.75rem)] bg-ey-cream text-foreground"
+      id={embedded ? undefined : "why-now"}
+      style={{ paddingBlock: embedded ? 0 : "1.25rem" }}
+      className={cn(
+        "bg-ey-cream text-foreground",
+        embedded ? "h-full" : "scroll-mt-24 min-h-[calc(100vh-5.75rem)]",
+      )}
     >
-      <div className="mx-auto w-full max-w-6xl px-5 md:px-8">
-        <div>
-          <p className="flex items-center gap-3 text-base font-semibold uppercase tracking-[0.22em] text-ey-green-deep">
-            <span aria-hidden className="h-3 w-1.5 shrink-0 rounded-sm bg-ey-yellow" />
-            Section 02
-          </p>
-          <h2 style={{ fontSize: "2.5rem" }} className="font-semibold leading-tight text-ey-green-deep">
-            Why plant security architecture must change now
-          </h2>
-          <p className="mt-1 text-lg leading-[1.3] text-muted-foreground">
-            Exposure is widening, plant risk remains uneven, and security performance is becoming measurable.
-          </p>
-        </div>
+      <div className={cn("mx-auto w-full", embedded ? "h-full" : "max-w-6xl px-5 md:px-8")}>
+        {!embedded && (
+          <div>
+            <p className="flex items-center gap-3 text-base font-semibold uppercase tracking-[0.22em] text-ey-green-deep">
+              <span aria-hidden className="h-3 w-1.5 shrink-0 rounded-sm bg-ey-yellow" />
+              Section 02
+            </p>
+            <h2 style={{ fontSize: "2.5rem" }} className="font-semibold leading-tight text-ey-green-deep">
+              Why plant security architecture must change now
+            </h2>
+            <p className="mt-1 text-lg leading-[1.3] text-muted-foreground">
+              Exposure is widening, plant risk remains uneven, and security performance is becoming measurable.
+            </p>
+          </div>
+        )}
 
-        <div className="mt-3 hidden lg:block">
+        <div className={cn("hidden lg:block", embedded ? "h-full" : "mt-3")}>
           <div
             data-why-now-infographic
             aria-label="Three strategic shifts changing plant security"
-            className="grid rounded-xl border border-hairline bg-white"
+            className="grid h-full overflow-hidden rounded-xl border border-hairline bg-white"
             style={{
               gridTemplateColumns: "repeat(3, minmax(0, 1fr))",
-              gridTemplateRows: "7.75rem 8.9375rem 8.9375rem 4rem",
+              gridTemplateRows: embedded ? "7.25rem 8.25rem 8.25rem 3.75rem" : "7.75rem 8.9375rem 8.9375rem 4rem",
             }}
           >
             {shifts.map((shift, index) => (
@@ -242,22 +247,24 @@ export function WhyNow() {
           </div>
         </div>
 
-        <div className="mt-3 space-y-4 lg:hidden">
-          {shifts.map((shift, index) => (
-            <article key={shift.heading} style={{ backgroundColor: shift.tint }} className="border border-hairline">
-              <div className="h-32">
-                <IntegratedShiftHeader shift={shift} index={index} />
-              </div>
-              <div className="space-y-4 px-4 py-4">
-                <CompressedDriver shift={shift} driverIndex={0} />
-                <CompressedDriver shift={shift} driverIndex={1} />
-              </div>
-              <div className="h-20">
-                <StrategicImplication shift={shift} />
-              </div>
-            </article>
-          ))}
-        </div>
+        {!embedded && (
+          <div className="mt-3 space-y-4 lg:hidden">
+            {shifts.map((shift, index) => (
+              <article key={shift.heading} style={{ backgroundColor: shift.tint }} className="border border-hairline">
+                <div className="h-32">
+                  <IntegratedShiftHeader shift={shift} index={index} />
+                </div>
+                <div className="space-y-4 px-4 py-4">
+                  <CompressedDriver shift={shift} driverIndex={0} />
+                  <CompressedDriver shift={shift} driverIndex={1} />
+                </div>
+                <div className="h-20">
+                  <StrategicImplication shift={shift} />
+                </div>
+              </article>
+            ))}
+          </div>
+        )}
       </div>
     </section>
   );
