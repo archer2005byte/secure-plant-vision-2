@@ -162,15 +162,23 @@ export type RailGroup = { caption?: string; items: Component[] };
 
 export const cyberRail: RailGroup[] = [
   {
+    caption: "Security-system controls",
     items: [
-      { icon: Network, label: "Network segmentation", detail: "Security VLANs separated from process networks." },
-      { icon: Shield, label: "Firewalls / DMZ", detail: "Allow-listed flows between OT, security and IT zones." },
-      { icon: Lock, label: "Encryption / PKI", detail: "Authenticated devices and encrypted streams." },
-      { icon: Fingerprint, label: "IAM / MFA", detail: "Least-privilege operator and administrator identity." },
-      { icon: ShieldCheck, label: "Device hardening", detail: "Baseline configuration for every field device." },
-      { icon: RefreshCcw, label: "Patch management", detail: "Firmware and platform currency under change control." },
-      { icon: Monitor, label: "Logging / SIEM", detail: "Cyber monitoring of the security estate itself." },
-      { icon: Cloud, label: "Backup / disaster recovery", detail: "Recoverable configuration, evidence and platform." },
+      { icon: Network, label: "Security network segmentation", detail: "Dedicated zones for CCTV, access control, perimeter and command systems." },
+      { icon: Shield, label: "Firewall / DMZ protection", detail: "Allow-listed flows between security, OT and enterprise networks." },
+      { icon: ShieldCheck, label: "Secure device & edge configuration", detail: "Hardening baseline for cameras, controllers, servers and edge devices." },
+      { icon: Fingerprint, label: "Controlled system access", detail: "Role-based administration of VMS, ACS and security platforms." },
+      { icon: Network, label: "Secure remote support", detail: "Controlled OEM and integrator maintenance paths with auditable access." },
+      { icon: RefreshCcw, label: "Firmware & patch governance", detail: "Managed updates for field devices, servers and security appliances." },
+      { icon: Monitor, label: "Security-system logging / SIEM integration", detail: "Security-system events and health logs forwarded for monitoring." },
+      { icon: Cloud, label: "Backup / DR for security systems", detail: "Recoverable configurations, evidence and core security platforms." },
+    ],
+  },
+  {
+    caption: "InfoSec dependencies",
+    items: [
+      { icon: Fingerprint, label: "IAM / MFA", detail: "Enterprise identity services consumed by security platforms." },
+      { icon: Lock, label: "PKI / certificates", detail: "Enterprise certificate services for trusted devices and encrypted sessions." },
     ],
   },
 ];
