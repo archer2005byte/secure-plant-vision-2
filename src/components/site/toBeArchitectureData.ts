@@ -170,7 +170,7 @@ export const cyberRail: RailGroup[] = [
       { icon: Fingerprint, label: "Controlled system access", detail: "Role-based administration of VMS, ACS and security platforms." },
       { icon: Network, label: "Secure remote support", detail: "Controlled OEM and integrator maintenance paths with auditable access." },
       { icon: RefreshCcw, label: "Firmware & patch governance", detail: "Managed updates for field devices, servers and security appliances." },
-      { icon: Monitor, label: "Security-system logging / SIEM integration", detail: "Security-system events and health logs forwarded for monitoring." },
+      { icon: ClipboardCheck, label: "Audit logging & traceability", detail: "Operator, administrator, configuration, export and alarm actions retained for accountability and forensic traceability." },
       { icon: Cloud, label: "Backup / DR for security systems", detail: "Recoverable configurations, evidence and core security platforms." },
     ],
   },
@@ -179,6 +179,7 @@ export const cyberRail: RailGroup[] = [
     items: [
       { icon: Fingerprint, label: "IAM / MFA", detail: "Enterprise identity services consumed by security platforms." },
       { icon: Lock, label: "PKI / certificates", detail: "Enterprise certificate services for trusted devices and encrypted sessions." },
+      { icon: Monitor, label: "SIEM integration", detail: "Relevant security-system logs and events forwarded to the enterprise SIEM." },
     ],
   },
 ];
