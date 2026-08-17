@@ -457,7 +457,7 @@
   }
 
   .s06-rail-left .s06-rail-group:last-child .s06-rail-list {
-    grid-template-rows: repeat(2, 24px);
+    grid-template-rows: repeat(3, 22px);
   }
 
   .s06-rail-left .s06-rail-item {
