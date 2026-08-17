@@ -38,22 +38,72 @@ const incidents = [
 ];
 
 const standards = [
-  ["ASIS PAP-2021", "Physical Asset Protection"],
-  ["IEC 62676", "Video Surveillance Systems"],
-  ["NFPA 730", "Premises Security"],
-  ["ISO 22341", "CPTED"],
-  ["NERC CIP-014", "Power-sector physical security"],
+  {
+    code: "ASIS PAP-2021",
+    label: "Physical Asset Protection",
+    detail:
+      "Risk-based framework for protecting physical assets through layered safeguards, threat assessment, protective design and response planning. Relevant here as the overarching physical-security benchmark.",
+  },
+  {
+    code: "IEC 62676",
+    label: "Video Surveillance Systems",
+    detail:
+      "International standard family covering the design, performance and application of video-surveillance systems for security purposes. Relevant to camera architecture, system design and surveillance performance.",
+  },
+  {
+    code: "NFPA 730",
+    label: "Premises Security",
+    detail:
+      "Guidance for premises-security planning, including vulnerability assessment, physical protection, access control and security management. Useful as a reference for layered protection of plant premises.",
+  },
+  {
+    code: "ISO 22341",
+    label: "CPTED",
+    detail:
+      "Framework for reducing security risk through environmental and spatial design. Relevant to perimeter treatment, access routes, visibility, natural surveillance and site layout.",
+  },
+  {
+    code: "NERC CIP-014",
+    label: "International sector benchmark",
+    detail:
+      "North American electric-sector standard requiring identification and protection of critical transmission facilities against physical attack. Relevant as a sector-specific benchmark for consequence-based physical-security planning.",
+  },
 ] as const;
 
 const indiaContext = [
-  ["CEA Technical Standards 2022", "Plant & electrical infrastructure"],
-  ["CEA Safety Requirements 2011/2022", "Construction & O&M safety"],
-  ["CEA Safety & Electric Supply 2023", "Electrical safety & inspection"],
-  ["CEA Cyber Security Guidelines 2021", "Supporting cyber-physical context"],
+  {
+    code: "CEA Technical Standards 2022",
+    label: "Plant & electrical infrastructure",
+    detail:
+      "Technical requirements governing construction and operation of electrical plants and systems. Relevant because physical-security design must coexist with plant layout, electrical infrastructure and operational requirements.",
+  },
+  {
+    code: "CEA Safety Requirements 2011/2022",
+    label: "Construction & O&M safety",
+    detail:
+      "Safety requirements applicable during construction, operation and maintenance of generating stations and associated installations. Relevant to access, work zones, contractor movement and emergency arrangements.",
+  },
+  {
+    code: "CEA Safety & Electric Supply 2023",
+    label: "Electrical safety & inspection",
+    detail:
+      "Regulatory requirements covering electrical safety, inspection and safe operation of electrical installations. Relevant where surveillance and security systems interface with substations, switchyards and other electrical areas.",
+  },
+  {
+    code: "CEA Cyber Security Guidelines 2021",
+    label: "Supporting cyber-physical context",
+    detail:
+      "Power-sector cybersecurity guidance covering governance, monitoring, incident management and protection of critical systems. Included here only where physical-security systems connect with digital and OT environments.",
+  },
 ] as const;
 
 export function WhyNowWithRails() {
   const [openIncident, setOpenIncident] = useState<number | null>(null);
+  const [openStandard, setOpenStandard] = useState<string | null>(null);
+
+  const toggleStandard = (code: string) => {
+    setOpenStandard((current) => (current === code ? null : code));
+  };
 
   return (
     <div className="relative h-[calc(100vh-5.75rem)] overflow-hidden bg-ey-cream">
@@ -117,15 +167,35 @@ export function WhyNowWithRails() {
             </div>
 
             <div className="space-y-1">
-              {standards.map(([code, label], index) => (
-                <div
-                  key={code}
-                  className={index === 0 ? "rounded-md border-l-4 border-ey-yellow bg-ey-green-deep px-2 py-1.5 text-white" : "rounded-md border border-hairline bg-ey-cream/55 px-2 py-1.5"}
-                >
-                  <p className="text-[0.69rem] font-bold leading-tight">{code}</p>
-                  <p className={index === 0 ? "mt-0.5 text-[0.57rem] leading-tight text-white/75" : "mt-0.5 text-[0.57rem] leading-tight text-muted-foreground"}>{label}</p>
-                </div>
-              ))}
+              {standards.map((item, index) => {
+                const isOpen = openStandard === item.code;
+                return (
+                  <button
+                    key={item.code}
+                    type="button"
+                    onClick={() => toggleStandard(item.code)}
+                    aria-expanded={isOpen}
+                    className={
+                      index === 0
+                        ? "w-full rounded-md border-l-4 border-ey-yellow bg-ey-green-deep px-2 py-1.5 text-left text-white"
+                        : "w-full rounded-md border border-hairline bg-ey-cream/55 px-2 py-1.5 text-left transition hover:border-ey-gold/70 hover:bg-white"
+                    }
+                  >
+                    <div className="flex items-start justify-between gap-2">
+                      <div>
+                        <p className="text-[0.69rem] font-bold leading-tight">{item.code}</p>
+                        <p className={index === 0 ? "mt-0.5 text-[0.57rem] leading-tight text-white/75" : "mt-0.5 text-[0.57rem] leading-tight text-muted-foreground"}>{item.label}</p>
+                      </div>
+                      {isOpen ? <ChevronUp className="mt-0.5 h-3 w-3 shrink-0" /> : <ChevronDown className="mt-0.5 h-3 w-3 shrink-0" />}
+                    </div>
+                    {isOpen && (
+                      <div className={index === 0 ? "mt-1.5 border-t border-white/20 pt-1.5" : "mt-1.5 border-t border-hairline pt-1.5"}>
+                        <p className={index === 0 ? "text-[0.58rem] leading-[1.3] text-white/80" : "text-[0.58rem] leading-[1.3] text-muted-foreground"}>{item.detail}</p>
+                      </div>
+                    )}
+                  </button>
+                );
+              })}
             </div>
 
             <div className="my-2 flex items-center gap-1.5">
@@ -135,12 +205,31 @@ export function WhyNowWithRails() {
             </div>
 
             <div className="space-y-1">
-              {indiaContext.map(([code, label]) => (
-                <div key={code} className="rounded-md border border-hairline bg-white px-2 py-1.5">
-                  <p className="text-[0.66rem] font-bold leading-tight text-ey-green-deep">{code}</p>
-                  <p className="mt-0.5 text-[0.55rem] leading-tight text-muted-foreground">{label}</p>
-                </div>
-              ))}
+              {indiaContext.map((item) => {
+                const isOpen = openStandard === item.code;
+                return (
+                  <button
+                    key={item.code}
+                    type="button"
+                    onClick={() => toggleStandard(item.code)}
+                    aria-expanded={isOpen}
+                    className="w-full rounded-md border border-hairline bg-white px-2 py-1.5 text-left transition hover:border-ey-gold/70"
+                  >
+                    <div className="flex items-start justify-between gap-2">
+                      <div>
+                        <p className="text-[0.66rem] font-bold leading-tight text-ey-green-deep">{item.code}</p>
+                        <p className="mt-0.5 text-[0.55rem] leading-tight text-muted-foreground">{item.label}</p>
+                      </div>
+                      {isOpen ? <ChevronUp className="mt-0.5 h-3 w-3 shrink-0" /> : <ChevronDown className="mt-0.5 h-3 w-3 shrink-0" />}
+                    </div>
+                    {isOpen && (
+                      <div className="mt-1.5 border-t border-hairline pt-1.5">
+                        <p className="text-[0.57rem] leading-[1.3] text-muted-foreground">{item.detail}</p>
+                      </div>
+                    )}
+                  </button>
+                );
+              })}
             </div>
           </div>
         </aside>
