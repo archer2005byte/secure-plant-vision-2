@@ -3,71 +3,25 @@ import {
   BarChart3,
   Building2,
   Cpu,
-  Info,
   Layers,
   ShieldCheck,
 } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
-import { AccentMedallion, accentVars, type AccentSlot } from "./AccentCard";
 import { cn } from "@/lib/utils";
 
 import grid from "@/assets/why-1-grid.jpg";
-import threat from "@/assets/why-2-threat.jpg";
 import plant from "@/assets/why-3-plant.jpg";
 import videowall from "@/assets/why-4-videowall.jpg";
 import kpi from "@/assets/why-5-kpi.jpg";
 import platform from "@/assets/why-6-platform.jpg";
 
-const drivers: {
-  icon: typeof ShieldCheck;
-  slot: AccentSlot;
-  image: string;
-  title: string;
-  body: string;
-}[] = [
-  {
-    icon: ShieldCheck,
-    slot: 1,
-    image: grid,
-    title: "Critical Infrastructure Is Now a National Security Asset",
-    body: "Power generation is a critical infrastructure sector, and designated systems and assets may fall within India's Critical Information Infrastructure protection framework. A security incident no longer affects a plant alone—it can cascade across grid operations, fuel logistics, evacuation infrastructure, and regional economic activity.",
-  },
-  {
-    icon: AlertTriangle,
-    slot: 2,
-    image: threat,
-    title: "Threats Have Changed from Theft to Operational Disruption",
-    body: "Traditional perimeter threats now coexist with coordinated intrusion, insider risk, drone reconnaissance, cyber-physical attacks, contractor vulnerabilities, and deliberate disruption of critical operations.",
-  },
-  {
-    icon: Building2,
-    slot: 3,
-    image: plant,
-    title: "Security Must Match Plant Risk",
-    body: "Plant risk is not uniform. Security architecture must reflect asset scale, terrain, fuel type, population density, contractor flows, and local threat conditions.",
-  },
-  {
-    icon: Layers,
-    slot: 4,
-    image: videowall,
-    title: "Existing Surveillance Estates Are Reaching Their Limits",
-    body: "Many plants already operate hundreds of cameras. The challenge is no longer video acquisition—it is integrating surveillance, access control, analytics, incident workflows and command visibility into a single operational architecture.",
-  },
-  {
-    icon: BarChart3,
-    slot: 5,
-    image: kpi,
-    title: "Security Performance is becoming Measurable",
-    body: "Security performance increasingly influences operational continuity, contractor governance, regulatory audits, emergency preparedness and insurance exposure. Modern security programmes are measured through response times, incident intelligence and operational resilience rather than camera counts.",
-  },
-  {
-    icon: Cpu,
-    slot: 6,
-    image: platform,
-    title: "Modernization Requires an Enterprise Platform",
-    body: "The next generation of plant security is built around integrated command platforms combining AI-enabled video analytics, perimeter intelligence, access management, drone awareness, GIS, OT integration and decision-support workflows.",
-  },
-];
+const drivers = [
+  { icon: ShieldCheck, image: grid },
+  { icon: AlertTriangle, image: grid },
+  { icon: Building2, image: plant },
+  { icon: Layers, image: videowall },
+  { icon: BarChart3, image: kpi },
+  { icon: Cpu, image: platform },
+] as const;
 
 const shifts = [
   {
@@ -139,7 +93,7 @@ const shifts = [
     ],
     implication: "Connect detection, decision and response.",
   },
-];
+] as const;
 
 type Shift = (typeof shifts)[number];
 
@@ -224,106 +178,6 @@ function StrategicImplication({ shift }: { shift: Shift }) {
 }
 
 export function WhyNow() {
-  const [showMore, setShowMore] = useState(false);
-  const moreButtonRef = useRef<HTMLButtonElement | null>(null);
-  const supplementalHeadingRef = useRef<HTMLHeadingElement | null>(null);
-  const restoreMoreButtonFocusRef = useRef(false);
-
-  useEffect(() => {
-    if (showMore) {
-      supplementalHeadingRef.current?.focus({ preventScroll: true });
-      return;
-    }
-    if (restoreMoreButtonFocusRef.current) {
-      restoreMoreButtonFocusRef.current = false;
-      moreButtonRef.current?.focus({ preventScroll: true });
-    }
-  }, [showMore]);
-
-  const openMoreInformation = () => {
-    setShowMore(true);
-  };
-
-  const closeMoreInformation = () => {
-    restoreMoreButtonFocusRef.current = true;
-    setShowMore(false);
-  };
-
-  if (showMore) {
-    return (
-      <section id="why-now" className="scroll-mt-24 bg-ey-cream py-8">
-        <div className="mx-auto w-full max-w-6xl px-5 md:px-8">
-          <div className="flex flex-wrap items-center gap-4 border-b border-hairline pb-4">
-            <p className="flex items-center gap-3 text-lg font-semibold uppercase tracking-[0.22em] text-ey-green-deep">
-              <span aria-hidden className="h-3 w-1.5 shrink-0 rounded-sm bg-ey-yellow" />
-              Section 02
-            </p>
-            <button
-              type="button"
-              onClick={closeMoreInformation}
-              className="rounded-md border border-ey-gold px-3 py-2 text-lg font-semibold text-ey-green-deep focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ey-gold focus-visible:ring-offset-2"
-            >
-              ← Back to Section 02
-            </button>
-          </div>
-
-          <h2
-            ref={supplementalHeadingRef}
-            id="why-now-more-information-heading"
-            tabIndex={-1}
-            className="mt-5 text-3xl font-semibold leading-tight text-ey-green-deep focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ey-gold"
-          >
-            More information on the six drivers
-          </h2>
-
-          <div id="why-now-more-information" role="region" aria-labelledby="why-now-more-information-heading" className="mt-6 space-y-8">
-            {shifts.map((shift, shiftIndex) => (
-              <section key={shift.heading} aria-labelledby={`why-now-shift-${shiftIndex + 1}`}>
-                <div className="flex items-center gap-3">
-                  <span style={{ color: shift.accent }} className="font-mono text-lg font-bold tracking-[0.16em]">
-                    0{shiftIndex + 1}
-                  </span>
-                  <h3 id={`why-now-shift-${shiftIndex + 1}`} className="text-2xl font-semibold text-ey-green-deep">
-                    {shift.heading}
-                  </h3>
-                </div>
-
-                <div className="mt-4 grid gap-4 lg:grid-cols-2">
-                  {shift.driverIndexes.map((driverIndex) => {
-                    const driver = drivers[driverIndex]!;
-                    return (
-                      <article
-                        key={driver.title}
-                        style={accentVars(driver.slot)}
-                        className="border border-[color:color-mix(in_oklab,var(--a)_25%,transparent)] bg-white p-5"
-                      >
-                        <img
-                          src={driver.image}
-                          alt=""
-                          aria-hidden="true"
-                          width={560}
-                          height={240}
-                          className="h-32 w-full rounded-md object-cover"
-                        />
-                        <div className="mt-4 flex items-start gap-3">
-                          <AccentMedallion>
-                            <driver.icon className="h-5 w-5" aria-hidden="true" />
-                          </AccentMedallion>
-                          <h4 className="text-xl font-semibold leading-snug text-ey-green-deep">{driver.title}</h4>
-                        </div>
-                        <p className="mt-3 text-lg leading-relaxed text-muted-foreground">{driver.body}</p>
-                      </article>
-                    );
-                  })}
-                </div>
-              </section>
-            ))}
-          </div>
-        </div>
-      </section>
-    );
-  }
-
   return (
     <section
       id="why-now"
@@ -339,22 +193,9 @@ export function WhyNow() {
           <h2 style={{ fontSize: "2.5rem" }} className="font-semibold leading-tight text-ey-green-deep">
             Why plant security architecture must change now
           </h2>
-          <div className="mt-1 flex items-center justify-between gap-5">
-            <p className="text-lg leading-[1.3] text-muted-foreground">
-              Exposure is widening, plant risk remains uneven, and security performance is becoming measurable.
-            </p>
-            <button
-              ref={moreButtonRef}
-              type="button"
-              onClick={openMoreInformation}
-              aria-expanded={false}
-              aria-controls="why-now-more-information"
-              className="inline-flex shrink-0 items-center gap-2 rounded-md border border-foreground/20 px-3 py-1.5 text-lg font-medium text-muted-foreground hover:border-ey-gold hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ey-gold focus-visible:ring-offset-2 focus-visible:ring-offset-ey-cream"
-            >
-              <Info className="h-4 w-4" aria-hidden="true" />
-              More information
-            </button>
-          </div>
+          <p className="mt-1 text-lg leading-[1.3] text-muted-foreground">
+            Exposure is widening, plant risk remains uneven, and security performance is becoming measurable.
+          </p>
         </div>
 
         <div className="mt-3 hidden lg:block">
@@ -368,10 +209,7 @@ export function WhyNow() {
             }}
           >
             {shifts.map((shift, index) => (
-              <div
-                key={`header-${shift.heading}`}
-                className={cn(index > 0 && "border-l border-hairline")}
-              >
+              <div key={`header-${shift.heading}`} className={cn(index > 0 && "border-l border-hairline")}>
                 <IntegratedShiftHeader shift={shift} index={index} />
               </div>
             ))}
@@ -405,24 +243,21 @@ export function WhyNow() {
         </div>
 
         <div className="mt-3 space-y-4 lg:hidden">
-          {shifts.map((shift, index) => {
-            return (
-              <article key={shift.heading} style={{ backgroundColor: shift.tint }} className="border border-hairline">
-                <div className="h-32">
-                  <IntegratedShiftHeader shift={shift} index={index} />
-                </div>
-                <div className="space-y-4 px-4 py-4">
-                  <CompressedDriver shift={shift} driverIndex={0} />
-                  <CompressedDriver shift={shift} driverIndex={1} />
-                </div>
-                <div className="h-20">
-                  <StrategicImplication shift={shift} />
-                </div>
-              </article>
-            );
-          })}
+          {shifts.map((shift, index) => (
+            <article key={shift.heading} style={{ backgroundColor: shift.tint }} className="border border-hairline">
+              <div className="h-32">
+                <IntegratedShiftHeader shift={shift} index={index} />
+              </div>
+              <div className="space-y-4 px-4 py-4">
+                <CompressedDriver shift={shift} driverIndex={0} />
+                <CompressedDriver shift={shift} driverIndex={1} />
+              </div>
+              <div className="h-20">
+                <StrategicImplication shift={shift} />
+              </div>
+            </article>
+          ))}
         </div>
-
       </div>
     </section>
   );
