@@ -30,11 +30,11 @@ const incidents = [
   },
   {
     tag: "SABOTAGE / AERIAL THREAT",
-    place: "Zawiya · Aug 2026",
-    headline: "Attack on power infrastructure disrupted generation",
+    place: "Zawiya, Libya · Aug 2026",
+    headline: "Drone strike on substation disrupted generation",
     detail:
-      "An attack on substation infrastructure caused a major outage and affected generation availability, illustrating how physical attacks and aerial threats can produce operational consequences beyond the immediate asset.",
-    source: "Reuters",
+      "A drone strike on the South Zawiya electrical substation ignited a major fire and knocked the facility out of service, causing widespread outages. The incident came amid repeated explosive-laden drone attacks on nearby energy infrastructure, including the refinery and power plant; more than 700 MW of Zawiya plant capacity was reported unavailable and GE withdrew technical teams because of the security situation. No group had claimed responsibility.",
+    source: "Reuters / AP",
   },
 ];
 
@@ -229,22 +229,19 @@ export function WhyNowWithRails() {
                   ? "absolute left-[14.9rem] top-5 z-20 w-[22rem] rounded-xl border border-ey-gold/35 bg-white p-4 shadow-xl"
                   : "absolute right-[14.9rem] top-5 z-20 w-[22rem] rounded-xl border border-ey-gold/35 bg-white p-4 shadow-xl"
               }
-              role="dialog"
-              aria-modal="false"
-              aria-label={detailCard.title}
             >
               <button
                 type="button"
                 onClick={() => setDetailCard(null)}
-                className="absolute right-2.5 top-2.5 rounded-md p-1 text-muted-foreground hover:bg-ey-cream hover:text-foreground"
-                aria-label="Close information card"
+                className="absolute right-3 top-3 rounded-full p-1 text-muted-foreground transition hover:bg-ey-cream hover:text-ey-green-deep"
+                aria-label="Close detail"
               >
-                <X className="h-4 w-4" />
+                <X className="h-4 w-4" aria-hidden="true" />
               </button>
-              {detailCard.subtitle && <p className="pr-7 text-[0.66rem] font-bold uppercase tracking-[0.12em] text-ey-gold">{detailCard.subtitle}</p>}
-              <h4 className="mt-1 pr-7 text-lg font-semibold leading-tight text-ey-green-deep">{detailCard.title}</h4>
-              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{detailCard.body}</p>
-              {detailCard.source && <p className="mt-3 border-t border-hairline pt-2 text-xs font-semibold text-foreground/65">Source: {detailCard.source}</p>}
+              {detailCard.subtitle && <p className="pr-8 text-[0.62rem] font-bold uppercase tracking-[0.12em] text-ey-gold">{detailCard.subtitle}</p>}
+              <h4 className="mt-2 pr-7 text-lg font-semibold leading-tight text-ey-green-deep">{detailCard.title}</h4>
+              <p className="mt-3 text-sm leading-relaxed text-foreground/80">{detailCard.body}</p>
+              {detailCard.source && <p className="mt-4 text-[0.7rem] font-semibold text-muted-foreground">Source: {detailCard.source}</p>}
             </div>
           )}
         </div>
