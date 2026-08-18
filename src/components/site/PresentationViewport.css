@@ -1,8 +1,10 @@
 /* Presentation viewport fit
-   The dense slides need a deterministic fit in the browser Fullscreen API used by the deck.
-   The previous height-only media queries missed the EY laptop because full-screen restores a
-   ~1080px CSS viewport. In presentation full screen, fit Sections 02–05 directly and keep
-   the top and bottom navigation ribbons at full size. */
+   The EY corporate laptop uses the browser Fullscreen API. The previous transform-based
+   approach reduced the pixels but did not reduce the element's layout box, so the fixed
+   bottom presentation ribbon still covered the lower content. Chromium/Edge supports
+   CSS zoom, which changes both the visual size and the layout dimensions. Use it only
+   for the four dense slides that need the fit; keep the hero and navigation ribbons at
+   their approved size. */
 
 @media (min-width: 1024px) {
   #why-now,
@@ -10,70 +12,68 @@
   #plant-blocks,
   #as-is {
     box-sizing: border-box;
+    overflow: hidden;
   }
 
-  #why-now {
-    height: calc(100dvh - var(--presentation-ribbon-height, 112px)) !important;
-    min-height: 0 !important;
-  }
-
+  #why-now,
   #segments,
   #plant-blocks,
   #as-is {
-    min-height: calc(100dvh - var(--presentation-ribbon-height, 112px)) !important;
+    height: calc(100dvh - var(--presentation-ribbon-height, 112px)) !important;
+    min-height: 0 !important;
   }
 }
 
-/* Full-screen presentation fit. Expand the layout width before scaling so the visual
-   width remains close to the approved desktop composition while the height is reduced. */
+/* Full-screen EY-laptop fit.
+   Width is expanded by the reciprocal of zoom so the rendered slide still fills the
+   horizontal presentation area while its layout height genuinely becomes shorter. */
 @media (min-width: 1024px) {
-  :fullscreen #why-now,
-  :fullscreen #segments,
-  :fullscreen #plant-blocks,
-  :fullscreen #as-is {
-    overflow: hidden;
+  html:fullscreen #why-now > .s02-shell {
+    zoom: 0.70;
+    width: 142.857% !important;
+    max-width: none !important;
+    height: auto !important;
+    transform: none !important;
   }
 
-  :fullscreen #why-now > .s02-shell {
-    width: calc(100% / 0.80) !important;
-    max-width: calc(112rem / 0.80) !important;
-    height: calc(100% / 0.80) !important;
-    transform: scale(0.80) !important;
-    transform-origin: top center !important;
+  html:fullscreen #segments > div {
+    zoom: 0.70;
+    width: 142.857% !important;
+    max-width: none !important;
+    transform: none !important;
   }
 
-  :fullscreen #segments > div,
-  :fullscreen #plant-blocks > div,
-  :fullscreen #as-is > div {
-    width: calc(100% / 0.80) !important;
-    max-width: calc(72rem / 0.80) !important;
-    transform: scale(0.80) !important;
-    transform-origin: top center !important;
+  html:fullscreen #plant-blocks > div {
+    zoom: 0.74;
+    width: 135.135% !important;
+    max-width: none !important;
+    transform: none !important;
+  }
+
+  html:fullscreen #as-is > div {
+    zoom: 0.74;
+    width: 135.135% !important;
+    max-width: none !important;
+    transform: none !important;
   }
 }
 
-/* Non-fullscreen fallback for corporate-laptop browser windows with reduced vertical room. */
+/* Matching fallback outside Fullscreen API for short corporate-laptop browser windows. */
 @media (min-width: 1024px) and (max-height: 900px) {
-  html:not(:fullscreen) #why-now > .s02-shell {
-    width: calc(100% / 0.84) !important;
-    max-width: calc(112rem / 0.84) !important;
-    height: calc(100% / 0.84) !important;
-    transform: scale(0.84);
-    transform-origin: top center;
+  html:not(:fullscreen) #why-now > .s02-shell,
+  html:not(:fullscreen) #segments > div {
+    zoom: 0.70;
+    width: 142.857% !important;
+    max-width: none !important;
+    height: auto !important;
+    transform: none !important;
   }
 
-  html:not(:fullscreen) #segments > div,
   html:not(:fullscreen) #plant-blocks > div,
   html:not(:fullscreen) #as-is > div {
-    width: calc(100% / 0.84) !important;
-    max-width: calc(72rem / 0.84) !important;
-    transform: scale(0.84);
-    transform-origin: top center;
-  }
-
-  html:not(:fullscreen) #segments,
-  html:not(:fullscreen) #plant-blocks,
-  html:not(:fullscreen) #as-is {
-    overflow: hidden;
+    zoom: 0.74;
+    width: 135.135% !important;
+    max-width: none !important;
+    transform: none !important;
   }
 }
