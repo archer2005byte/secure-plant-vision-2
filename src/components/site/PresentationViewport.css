@@ -1,8 +1,8 @@
 /* Presentation viewport fit
-   Corporate laptops can expose a much smaller CSS viewport because of Windows display
-   scaling even when the panel resolution is high. Keep the slide composition intact and
-   scale the dense presentation bodies when the available presentation height is short.
-   The top and bottom ribbons remain full size. */
+   The dense slides need a deterministic fit in the browser Fullscreen API used by the deck.
+   The previous height-only media queries missed the EY laptop because full-screen restores a
+   ~1080px CSS viewport. In presentation full screen, fit Sections 02–05 directly and keep
+   the top and bottom navigation ribbons at full size. */
 
 @media (min-width: 1024px) {
   #why-now,
@@ -24,37 +24,56 @@
   }
 }
 
-/* EY / corporate-laptop fit. Use 1024px rather than 1280px because Windows display
-   scaling can reduce the effective CSS width below 1280px on a 1920px-class panel. */
-@media (min-width: 1024px) and (max-height: 950px) {
-  #why-now > .s02-shell,
-  #segments > div,
-  #plant-blocks > div,
-  #as-is > div {
+/* Full-screen presentation fit. Expand the layout width before scaling so the visual
+   width remains close to the approved desktop composition while the height is reduced. */
+@media (min-width: 1024px) {
+  :fullscreen #why-now,
+  :fullscreen #segments,
+  :fullscreen #plant-blocks,
+  :fullscreen #as-is {
+    overflow: hidden;
+  }
+
+  :fullscreen #why-now > .s02-shell {
+    width: calc(100% / 0.80) !important;
+    max-width: calc(112rem / 0.80) !important;
+    height: calc(100% / 0.80) !important;
+    transform: scale(0.80) !important;
+    transform-origin: top center !important;
+  }
+
+  :fullscreen #segments > div,
+  :fullscreen #plant-blocks > div,
+  :fullscreen #as-is > div {
+    width: calc(100% / 0.80) !important;
+    max-width: calc(72rem / 0.80) !important;
+    transform: scale(0.80) !important;
+    transform-origin: top center !important;
+  }
+}
+
+/* Non-fullscreen fallback for corporate-laptop browser windows with reduced vertical room. */
+@media (min-width: 1024px) and (max-height: 900px) {
+  html:not(:fullscreen) #why-now > .s02-shell {
+    width: calc(100% / 0.84) !important;
+    max-width: calc(112rem / 0.84) !important;
+    height: calc(100% / 0.84) !important;
     transform: scale(0.84);
     transform-origin: top center;
   }
 
-  #why-now > .s02-shell {
-    height: calc(100% / 0.84) !important;
+  html:not(:fullscreen) #segments > div,
+  html:not(:fullscreen) #plant-blocks > div,
+  html:not(:fullscreen) #as-is > div {
+    width: calc(100% / 0.84) !important;
+    max-width: calc(72rem / 0.84) !important;
+    transform: scale(0.84);
+    transform-origin: top center;
   }
 
-  #segments,
-  #plant-blocks,
-  #as-is {
+  html:not(:fullscreen) #segments,
+  html:not(:fullscreen) #plant-blocks,
+  html:not(:fullscreen) #as-is {
     overflow: hidden;
-  }
-}
-
-@media (min-width: 1024px) and (max-height: 800px) {
-  #why-now > .s02-shell,
-  #segments > div,
-  #plant-blocks > div,
-  #as-is > div {
-    transform: scale(0.78);
-  }
-
-  #why-now > .s02-shell {
-    height: calc(100% / 0.78) !important;
   }
 }
