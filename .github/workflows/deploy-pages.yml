@@ -59,7 +59,7 @@ jobs:
       - name: Prepare Version 1 for archive path
         working-directory: v1
         run: |
-          sed -i 's|const githubPagesBase = "/secure-plant-vision-2/";|const githubPagesBase = process.env.VITE_PUBLIC_BASE || "/secure-plant-vision-2/";|' vite.config.ts
+          sed -i 's#const githubPagesBase = "/secure-plant-vision-2/";#const githubPagesBase = process.env.VITE_PUBLIC_BASE || "/secure-plant-vision-2/";#' vite.config.ts
 
       - name: Build Version 1
         working-directory: v1
