@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { ChevronRight, Newspaper, ShieldCheck, X } from "lucide-react";
 import { WhyNow } from "./WhyNow";
+import "./WhyNowWithRails.css";
 
 const incidents = [
   {
@@ -116,8 +117,8 @@ export function WhyNowWithRails() {
 
   return (
     <section id="why-now" className="relative h-[calc(100vh-5.75rem)] overflow-hidden bg-ey-cream text-foreground">
-      <div className="mx-auto hidden h-full w-full max-w-[112rem] px-4 py-4 xl:block">
-        <div className="mx-auto grid max-w-[110rem] grid-cols-[14.25rem_minmax(0,1fr)_14.25rem] gap-3">
+      <div className="s02-shell mx-auto hidden h-full w-full max-w-[112rem] flex-col px-4 py-4 xl:flex">
+        <div className="s02-heading mx-auto grid w-full max-w-[110rem] shrink-0 grid-cols-[14.25rem_minmax(0,1fr)_14.25rem] gap-3">
           <div aria-hidden="true" />
           <header>
             <p className="flex items-center gap-3 text-base font-semibold uppercase tracking-[0.22em] text-ey-green-deep">
@@ -134,8 +135,8 @@ export function WhyNowWithRails() {
           <div aria-hidden="true" />
         </div>
 
-        <div className="relative mx-auto mt-3 grid h-[31.5rem] max-w-[110rem] grid-cols-[14.25rem_minmax(0,1fr)_14.25rem] gap-3">
-          <aside aria-label="Recent power-sector security incidents" className="h-full rounded-xl border border-hairline bg-white/95 p-2.5 shadow-sm">
+        <div className="s02-workspace relative mx-auto mt-3 grid min-h-0 w-full max-w-[110rem] flex-1 grid-cols-[14.25rem_minmax(0,1fr)_14.25rem] gap-3">
+          <aside aria-label="Recent power-sector security incidents" className="s02-rail h-full min-h-0 rounded-xl border border-hairline bg-white/95 p-2.5 shadow-sm">
             <div className="flex items-center gap-2 border-b border-hairline pb-2">
               <Newspaper className="h-4 w-4 text-ey-gold" aria-hidden="true" />
               <div>
@@ -163,11 +164,11 @@ export function WhyNowWithRails() {
             </div>
           </aside>
 
-          <div className="min-w-0 h-full">
+          <div className="h-full min-h-0 min-w-0">
             <WhyNow embedded />
           </div>
 
-          <aside aria-label="Applicable physical-security standards and power-sector regulations" className="h-full rounded-xl border border-hairline bg-white/95 p-2.5 shadow-sm">
+          <aside aria-label="Applicable physical-security standards and power-sector regulations" className="s02-rail h-full min-h-0 rounded-xl border border-hairline bg-white/95 p-2.5 shadow-sm">
             <div className="flex items-center gap-2 border-b border-hairline pb-2">
               <ShieldCheck className="h-4 w-4 text-ey-gold" aria-hidden="true" />
               <div>
