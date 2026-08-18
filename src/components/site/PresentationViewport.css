@@ -1,0 +1,265 @@
+/* EY corporate-laptop presentation fit.
+   The fixed top ribbon is 60px and the fixed bottom navigation is 52px.
+   These rules preserve the approved desktop composition while making the dense
+   early slides fit the usable canvas on the managed EY laptop. */
+
+@media (min-width: 1024px) {
+  #top,
+  #why-now,
+  #segments,
+  #as-is {
+    box-sizing: border-box;
+    height: calc(100dvh - var(--presentation-ribbon-height, 112px)) !important;
+    min-height: 0 !important;
+    overflow: hidden !important;
+  }
+
+  /* HERO — restore visual presence while keeping the focus band above navigation. */
+  #top > div.relative.mx-auto {
+    height: 100% !important;
+    box-sizing: border-box;
+    padding-top: 2.35rem !important;
+    padding-bottom: 1.1rem !important;
+  }
+  #top > div.relative.mx-auto > div {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+  #top h1 {
+    margin-top: 1.35rem !important;
+    font-size: 3.5rem !important;
+    line-height: 1.05 !important;
+  }
+  #top h1 + p {
+    margin-top: 1.15rem !important;
+    font-size: 1.05rem !important;
+    line-height: 1.42 !important;
+  }
+  #top h1 + p + div {
+    margin-top: 1.45rem !important;
+  }
+  #top h1 + p + div a {
+    padding-top: .78rem !important;
+    padding-bottom: .78rem !important;
+  }
+  #top h1 + p + div + div {
+    margin-top: 1.35rem !important;
+  }
+  #top h1 + p + div + div > div:first-child {
+    padding-top: .6rem !important;
+    padding-bottom: .6rem !important;
+  }
+  #top dl > div {
+    min-height: 5.75rem !important;
+    padding-top: .65rem !important;
+    padding-bottom: .65rem !important;
+  }
+  #top dl svg { width: 1.45rem !important; height: 1.45rem !important; }
+  #top dl dd { margin-top: .45rem !important; font-size: 1rem !important; line-height: 1.16 !important; }
+
+  /* SECTION 02 — use more of the canvas while keeping a single common baseline. */
+  #why-now > .s02-shell {
+    height: 100% !important;
+    box-sizing: border-box;
+    padding-top: .45rem !important;
+    padding-bottom: .35rem !important;
+  }
+  #why-now .s02-heading { flex: 0 0 auto; }
+  #why-now .s02-heading h2 {
+    font-size: 1.9rem !important;
+    line-height: 1.02 !important;
+  }
+  #why-now .s02-heading > header > p:first-child {
+    font-size: .72rem !important;
+    line-height: .86rem !important;
+  }
+  #why-now .s02-heading > header > p:last-child {
+    margin-top: .1rem !important;
+    font-size: .76rem !important;
+    line-height: .95rem !important;
+  }
+  #why-now .s02-workspace {
+    flex: 0 0 auto !important;
+    height: 32.5rem !important;
+    margin-top: .35rem !important;
+    min-height: 0 !important;
+    gap: .55rem !important;
+    align-items: stretch !important;
+  }
+  #why-now .s02-rail {
+    height: 100% !important;
+    min-height: 0 !important;
+    overflow: hidden !important;
+    padding: .5rem !important;
+  }
+  #why-now .s02-rail > div:first-child {
+    padding-bottom: .35rem !important;
+  }
+  #why-now .s02-rail .mt-2 {
+    margin-top: .35rem !important;
+  }
+  #why-now .s02-rail .my-2 {
+    margin-top: .35rem !important;
+    margin-bottom: .35rem !important;
+  }
+  #why-now .s02-rail button {
+    padding-top: .28rem !important;
+    padding-bottom: .28rem !important;
+  }
+  #why-now [data-why-now-infographic] {
+    height: 100% !important;
+    grid-template-rows: 8.25rem 10.6rem 10.6rem 3.05rem !important;
+    align-content: start !important;
+  }
+  #why-now [data-why-now-infographic] h3 {
+    font-size: .95rem !important;
+    line-height: 1.02 !important;
+  }
+  #why-now [data-why-now-infographic] h4 {
+    font-size: .88rem !important;
+    line-height: 1.05 !important;
+  }
+  #why-now [data-why-now-infographic] p {
+    font-size: .78rem !important;
+    line-height: 1.1 !important;
+    margin-top: .14rem !important;
+  }
+  #why-now [data-why-now-infographic] > div:nth-child(n+4):nth-child(-n+9) {
+    display: flex !important;
+    align-items: center !important;
+    overflow: hidden !important;
+    padding: .3rem .58rem !important;
+  }
+  #why-now [data-why-now-infographic] > div:nth-child(n+4):nth-child(-n+9) > * {
+    width: 100%;
+  }
+  #why-now [data-why-now-infographic] > div:nth-child(n+10) p {
+    font-size: .76rem !important;
+  }
+
+  /* SECTION 03 — restore scale; the previous 155px panels were visibly over-compressed. */
+  #segments {
+    padding-top: .7rem !important;
+    padding-bottom: .45rem !important;
+  }
+  #segments > div {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  #segments header { flex: 0 0 auto; }
+  #segments header > p:first-child { font-size: .78rem !important; }
+  #segments header h2 {
+    margin-top: .2rem !important;
+    font-size: 2.35rem !important;
+    line-height: 1.02 !important;
+  }
+  #segments header > p:last-child {
+    margin-top: .2rem !important;
+    font-size: .95rem !important;
+    line-height: 1.12 !important;
+  }
+  #segments header + div {
+    margin-top: .6rem !important;
+  }
+  #segments .h-\[250px\] {
+    height: 205px !important;
+  }
+  #segments .h-\[42px\] {
+    height: 38px !important;
+  }
+  #segments article > div {
+    padding: .48rem .85rem !important;
+  }
+  #segments article .h-8.w-8 {
+    height: 1.8rem !important;
+    width: 1.8rem !important;
+    font-size: .95rem !important;
+  }
+  #segments article .text-\[17px\] { font-size: 14.5px !important; }
+  #segments article .text-\[11\.5px\] { font-size: 10.3px !important; }
+  #segments article .text-\[10\.3px\] { font-size: 9.2px !important; line-height: 1.08 !important; }
+  #segments article .text-\[10px\] { font-size: 8.8px !important; }
+  #segments article .mt-2 { margin-top: .38rem !important; }
+  #segments article .mt-1\.5 { margin-top: .28rem !important; }
+  #segments article .pt-1\.5 { padding-top: .3rem !important; }
+  #segments article .relative.mt-2 {
+    margin-top: .32rem !important;
+    padding: .38rem .7rem !important;
+  }
+  #segments article .relative.mt-2 > span { top: 12px !important; }
+  #segments article .relative.mt-2 .h-4.w-4 {
+    width: .86rem !important;
+    height: .86rem !important;
+    border-width: 2px !important;
+  }
+  #segments article .relative.mt-2 span.mt-2 {
+    margin-top: .3rem !important;
+    font-size: 8.2px !important;
+  }
+  #segments > div > div:last-child {
+    margin-top: .38rem !important;
+    padding-top: .38rem !important;
+    padding-bottom: .38rem !important;
+  }
+  #segments > div > div:last-child p:first-child { font-size: 10px !important; }
+  #segments > div > div:last-child p:last-child { font-size: 8.6px !important; }
+
+  /* SECTION 05 — compact the workspace itself so Evidence & Tests rises and the lower callout clears navigation. */
+  #as-is {
+    padding-top: .55rem !important;
+    padding-bottom: .3rem !important;
+  }
+  #as-is > div {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  #as-is header > p:first-child { font-size: .76rem !important; }
+  #as-is header h2 {
+    margin-top: .12rem !important;
+    font-size: 2.2rem !important;
+    line-height: 1.01 !important;
+  }
+  #as-is header > p:last-child {
+    margin-top: .16rem !important;
+    font-size: .88rem !important;
+    line-height: 1.1 !important;
+  }
+  #as-is header + div {
+    margin-top: .38rem !important;
+  }
+  #as-is header + div > div {
+    min-height: 34px !important;
+    padding-top: .3rem !important;
+    padding-bottom: .3rem !important;
+  }
+  #as-is header + div + div {
+    margin-top: .24rem !important;
+    margin-bottom: .28rem !important;
+  }
+  #as-is .assessment-workspace-v2 {
+    height: 470px !important;
+    min-height: 0 !important;
+    flex: 0 0 470px !important;
+  }
+  #as-is .assessment-left-body-v2 svg {
+    height: 250px !important;
+    width: 250px !important;
+  }
+  #as-is .assessment-left-body-v2 ol {
+    gap: 1px !important;
+  }
+  #as-is .assessment-left-body-v2 ol button {
+    min-height: 25px !important;
+    padding-top: .14rem !important;
+    padding-bottom: .14rem !important;
+  }
+  #as-is .assessment-workspace-v2 + div {
+    margin-top: .22rem !important;
+    padding-top: .28rem !important;
+    padding-bottom: .28rem !important;
+  }
+}

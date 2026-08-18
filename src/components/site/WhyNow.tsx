@@ -25,7 +25,7 @@ const drivers = [
 
 const shifts = [
   {
-    heading: "National exposure and evolving threats",
+    heading: "Threats are becoming operational",
     icon: ShieldCheck,
     accent: "var(--ey-gold)",
     tint: "color-mix(in oklab, var(--ey-yellow) 7%, white)",
@@ -48,7 +48,7 @@ const shifts = [
     implication: "Protect continuity—not only the perimeter.",
   },
   {
-    heading: "Plant-specific capability gaps",
+    heading: "Every plant has a different risk profile",
     icon: Layers,
     accent: "var(--ey-coral)",
     tint: "color-mix(in oklab, var(--ey-coral) 6%, white)",
@@ -71,7 +71,7 @@ const shifts = [
     implication: "Design for the plant—not for a generic specification.",
   },
   {
-    heading: "Enterprise resilience and modernisation",
+    heading: "Security architecture must scale with maturity",
     icon: Cpu,
     accent: "var(--ey-resilience)",
     tint: "color-mix(in oklab, var(--ey-resilience) 7%, white)",
@@ -86,7 +86,7 @@ const shifts = [
           "Response time, incident intelligence, auditability and continuity now matter more than camera counts.",
       },
       {
-        title: "Modernisation requires an enterprise platform",
+        title: "Modernisation requires an integrated operating model",
         summary:
           "Video analytics, perimeter intelligence, access management, GIS, OT context and response workflows must operate together.",
       },
@@ -101,40 +101,35 @@ function IntegratedShiftHeader({ shift, index }: { shift: Shift; index: number }
   const representative = drivers[shift.mainImageIndex]!;
 
   return (
-    <div className="relative h-full bg-ey-green-deep">
-      <img
-        src={representative.image}
-        alt=""
-        aria-hidden="true"
-        width={480}
-        height={180}
-        style={{ filter: "saturate(0.58) contrast(1.18)", objectPosition: shift.objectPosition }}
-        className="absolute inset-0 h-full w-full object-cover"
-      />
-      <div aria-hidden="true" style={{ backgroundColor: shift.overlay, mixBlendMode: "color" }} className="absolute inset-0 opacity-30" />
-      <div
-        aria-hidden="true"
-        className="absolute inset-0"
-        style={{ background: "linear-gradient(180deg, rgba(8,20,17,0.08) 10%, rgba(8,20,17,0.88) 100%)" }}
-      />
-      <div className="absolute inset-x-0 bottom-0 flex items-end gap-3 px-4 pb-3">
+    <div className="flex h-full flex-col bg-ey-green-deep">
+      <div className="relative min-h-0 flex-1 overflow-hidden">
+        <img
+          src={representative.image}
+          alt=""
+          aria-hidden="true"
+          width={480}
+          height={180}
+          style={{ filter: "saturate(0.58) contrast(1.18)", objectPosition: shift.objectPosition }}
+          className="absolute inset-0 h-full w-full object-cover"
+        />
+        <div aria-hidden="true" style={{ backgroundColor: shift.overlay, mixBlendMode: "color" }} className="absolute inset-0 opacity-25" />
+        <div
+          aria-hidden="true"
+          className="absolute inset-0"
+          style={{ background: "linear-gradient(180deg, rgba(8,20,17,0.02) 15%, rgba(8,20,17,0.36) 100%)" }}
+        />
+      </div>
+      <div className="flex h-[3.05rem] shrink-0 items-center gap-2.5 bg-ey-green-deep px-3 text-white">
         <span
           style={{ backgroundColor: shift.accent, color: "var(--ey-green-deep)" }}
-          className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-md shadow-sm"
+          className="inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-md shadow-sm"
         >
-          <shift.icon className="h-4 w-4" aria-hidden="true" />
+          <shift.icon className="h-3.5 w-3.5" aria-hidden="true" />
         </span>
-        <div className="min-w-0">
-          <span
-            style={{ color: "rgba(255,255,255,0.9)", textShadow: "0 1px 3px rgba(0,0,0,0.85)" }}
-            className="font-mono text-lg font-bold tracking-[0.16em]"
-          >
-            0{index + 1}
-          </span>
-          <h3 style={{ lineHeight: 1.05 }} className="text-xl font-semibold text-white">
-            {shift.heading}
-          </h3>
-        </div>
+        <span className="font-mono text-sm font-bold tracking-[0.14em] text-white/75">0{index + 1}</span>
+        <h3 style={{ lineHeight: 1.04 }} className="min-w-0 text-[0.98rem] font-semibold text-white">
+          {shift.heading}
+        </h3>
       </div>
     </div>
   );
@@ -210,7 +205,7 @@ export function WhyNow({ embedded = false }: { embedded?: boolean }) {
             className="grid h-full overflow-hidden rounded-xl border border-hairline bg-white"
             style={{
               gridTemplateColumns: "repeat(3, minmax(0, 1fr))",
-              gridTemplateRows: embedded ? "7.25rem minmax(0,1fr) minmax(0,1fr) 3.75rem" : "7.75rem 8.9375rem 8.9375rem 4rem",
+              gridTemplateRows: embedded ? "8rem minmax(0,1fr) minmax(0,1fr) 3.75rem" : "8.5rem 8.9375rem 8.9375rem 4rem",
             }}
           >
             {shifts.map((shift, index) => (
@@ -251,7 +246,7 @@ export function WhyNow({ embedded = false }: { embedded?: boolean }) {
           <div className="mt-3 space-y-4 lg:hidden">
             {shifts.map((shift, index) => (
               <article key={shift.heading} style={{ backgroundColor: shift.tint }} className="border border-hairline">
-                <div className="h-32">
+                <div className="h-36">
                   <IntegratedShiftHeader shift={shift} index={index} />
                 </div>
                 <div className="space-y-4 px-4 py-4">

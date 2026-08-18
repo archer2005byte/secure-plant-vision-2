@@ -1,0 +1,117 @@
+/* Section 02 is presentation-like on desktop. Keep the composition inside the
+   available viewport height on corporate laptops without globally scaling the deck. */
+
+@media (min-width: 1280px) and (max-height: 850px) {
+  .s02-shell {
+    padding-top: 0.6rem !important;
+    padding-bottom: 0.6rem !important;
+  }
+
+  .s02-heading > p {
+    font-size: 0.78rem;
+    line-height: 1rem;
+  }
+
+  .s02-heading > h2 {
+    font-size: 1.85rem;
+    line-height: 1.05;
+  }
+
+  .s02-heading > p:last-child {
+    margin-top: 0.2rem;
+    font-size: 0.8rem;
+    line-height: 1.1;
+  }
+
+  .s02-workspace {
+    margin-top: 0.45rem !important;
+    gap: 0.55rem !important;
+  }
+
+  .s02-rail {
+    padding: 0.45rem !important;
+  }
+
+  .s02-rail > div:first-child {
+    padding-bottom: 0.35rem !important;
+  }
+
+  .s02-rail button {
+    padding-top: 0.28rem !important;
+    padding-bottom: 0.28rem !important;
+  }
+
+  .s02-rail .mt-2 {
+    margin-top: 0.35rem !important;
+  }
+
+  .s02-rail .my-2 {
+    margin-top: 0.35rem !important;
+    margin-bottom: 0.35rem !important;
+  }
+
+  [data-why-now-infographic] {
+    grid-template-rows: 5.8rem minmax(0, 1fr) minmax(0, 1fr) 2.8rem !important;
+  }
+
+  [data-why-now-infographic] h3 {
+    font-size: 1rem !important;
+  }
+
+  [data-why-now-infographic] h4 {
+    font-size: 0.92rem !important;
+  }
+
+  [data-why-now-infographic] p {
+    font-size: 0.88rem !important;
+  }
+
+  [data-why-now-infographic] > div:nth-child(n + 4):nth-child(-n + 9) {
+    padding-left: 0.7rem !important;
+    padding-right: 0.7rem !important;
+    padding-top: 0.25rem !important;
+    padding-bottom: 0.25rem !important;
+  }
+}
+
+@media (min-width: 1280px) and (max-height: 760px) {
+  .s02-shell {
+    padding-top: 0.35rem !important;
+    padding-bottom: 0.35rem !important;
+  }
+
+  .s02-heading > p {
+    font-size: 0.7rem;
+    line-height: 0.9rem;
+  }
+
+  .s02-heading > h2 {
+    font-size: 1.6rem;
+  }
+
+  .s02-heading > p:last-child {
+    font-size: 0.72rem;
+  }
+
+  .s02-workspace {
+    margin-top: 0.3rem !important;
+    gap: 0.45rem !important;
+  }
+
+  [data-why-now-infographic] {
+    grid-template-rows: 5rem minmax(0, 1fr) minmax(0, 1fr) 2.45rem !important;
+  }
+
+  [data-why-now-infographic] h3 {
+    font-size: 0.9rem !important;
+  }
+
+  [data-why-now-infographic] h4 {
+    font-size: 0.82rem !important;
+  }
+
+  [data-why-now-infographic] p {
+    font-size: 0.78rem !important;
+    line-height: 1.12 !important;
+  }
+}

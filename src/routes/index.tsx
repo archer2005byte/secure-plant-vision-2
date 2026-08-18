@@ -13,6 +13,7 @@ import { Offerings } from "@/components/site/Offerings";
 import { WhyEy } from "@/components/site/WhyEy";
 import { Credentials } from "@/components/site/Credentials";
 import { ClosingCta } from "@/components/site/ClosingCta";
+import "@/components/site/PresentationViewport.css";
 
 const title = "Integrated Surveillance & Security Modernization | EY";
 const description =
