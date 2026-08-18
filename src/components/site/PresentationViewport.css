@@ -59,7 +59,7 @@
   #top dl svg { width: 1.45rem !important; height: 1.45rem !important; }
   #top dl dd { margin-top: .45rem !important; font-size: 1rem !important; line-height: 1.16 !important; }
 
-  /* SECTION 02 — compact and vertically align the central argument cells and rails. */
+  /* SECTION 02 — use more of the canvas while keeping a single common baseline. */
   #why-now > .s02-shell {
     height: 100% !important;
     box-sizing: border-box;
@@ -82,8 +82,8 @@
   }
   #why-now .s02-workspace {
     flex: 0 0 auto !important;
-    height: 25.7rem !important;
-    margin-top: .3rem !important;
+    height: 32.5rem !important;
+    margin-top: .35rem !important;
     min-height: 0 !important;
     gap: .55rem !important;
     align-items: stretch !important;
@@ -92,51 +92,51 @@
     height: 100% !important;
     min-height: 0 !important;
     overflow: hidden !important;
-    padding: .45rem !important;
+    padding: .5rem !important;
   }
   #why-now .s02-rail > div:first-child {
-    padding-bottom: .3rem !important;
+    padding-bottom: .35rem !important;
   }
   #why-now .s02-rail .mt-2 {
-    margin-top: .3rem !important;
+    margin-top: .35rem !important;
   }
   #why-now .s02-rail .my-2 {
-    margin-top: .3rem !important;
-    margin-bottom: .3rem !important;
+    margin-top: .35rem !important;
+    margin-bottom: .35rem !important;
   }
   #why-now .s02-rail button {
-    padding-top: .2rem !important;
-    padding-bottom: .2rem !important;
+    padding-top: .28rem !important;
+    padding-bottom: .28rem !important;
   }
   #why-now [data-why-now-infographic] {
     height: 100% !important;
-    grid-template-rows: 5rem 9.1rem 9.1rem 2.45rem !important;
+    grid-template-rows: 8.25rem 10.6rem 10.6rem 3.05rem !important;
     align-content: start !important;
   }
   #why-now [data-why-now-infographic] h3 {
-    font-size: .98rem !important;
-    line-height: 1 !important;
+    font-size: .95rem !important;
+    line-height: 1.02 !important;
   }
   #why-now [data-why-now-infographic] h4 {
-    font-size: .86rem !important;
-    line-height: 1.04 !important;
+    font-size: .88rem !important;
+    line-height: 1.05 !important;
   }
   #why-now [data-why-now-infographic] p {
-    font-size: .76rem !important;
-    line-height: 1.08 !important;
-    margin-top: .12rem !important;
+    font-size: .78rem !important;
+    line-height: 1.1 !important;
+    margin-top: .14rem !important;
   }
   #why-now [data-why-now-infographic] > div:nth-child(n+4):nth-child(-n+9) {
     display: flex !important;
     align-items: center !important;
     overflow: hidden !important;
-    padding: .24rem .5rem !important;
+    padding: .3rem .58rem !important;
   }
   #why-now [data-why-now-infographic] > div:nth-child(n+4):nth-child(-n+9) > * {
     width: 100%;
   }
   #why-now [data-why-now-infographic] > div:nth-child(n+10) p {
-    font-size: .74rem !important;
+    font-size: .76rem !important;
   }
 
   /* SECTION 03 — restore scale; the previous 155px panels were visibly over-compressed. */
