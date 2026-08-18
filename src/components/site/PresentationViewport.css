@@ -59,12 +59,12 @@
   #top dl svg { width: 1.45rem !important; height: 1.45rem !important; }
   #top dl dd { margin-top: .45rem !important; font-size: 1rem !important; line-height: 1.16 !important; }
 
-  /* SECTION 02 — use deliberate row heights instead of oversized flexible cells. */
+  /* SECTION 02 — keep the content dense and top-aligned; remove oversized blank cells. */
   #why-now > .s02-shell {
     height: 100% !important;
     box-sizing: border-box;
-    padding-top: .7rem !important;
-    padding-bottom: .6rem !important;
+    padding-top: .6rem !important;
+    padding-bottom: .5rem !important;
   }
   #why-now .s02-heading { flex: 0 0 auto; }
   #why-now .s02-heading h2 {
@@ -76,27 +76,29 @@
     line-height: .95rem !important;
   }
   #why-now .s02-heading > header > p:last-child {
-    margin-top: .18rem !important;
+    margin-top: .16rem !important;
     font-size: .82rem !important;
     line-height: 1.05rem !important;
   }
   #why-now .s02-workspace {
-    margin-top: .55rem !important;
+    flex: 0 0 auto !important;
+    height: min(35rem, calc(100% - 5.2rem)) !important;
+    margin-top: .45rem !important;
     min-height: 0 !important;
     gap: .65rem !important;
   }
   #why-now .s02-rail {
-    padding: .6rem !important;
+    padding: .55rem !important;
   }
   #why-now .s02-rail > div:first-child {
-    padding-bottom: .45rem !important;
-  }
-  #why-now .s02-rail button {
-    padding-top: .4rem !important;
     padding-bottom: .4rem !important;
   }
+  #why-now .s02-rail button {
+    padding-top: .34rem !important;
+    padding-bottom: .34rem !important;
+  }
   #why-now [data-why-now-infographic] {
-    grid-template-rows: 5.9rem 12rem 12rem 2.9rem !important;
+    grid-template-rows: 5.45rem 10.6rem 10.6rem 2.65rem !important;
     align-content: start !important;
   }
   #why-now [data-why-now-infographic] h3 {
@@ -104,20 +106,20 @@
     line-height: 1.02 !important;
   }
   #why-now [data-why-now-infographic] h4 {
-    font-size: .94rem !important;
-    line-height: 1.08 !important;
+    font-size: .92rem !important;
+    line-height: 1.06 !important;
   }
   #why-now [data-why-now-infographic] p {
-    font-size: .84rem !important;
-    line-height: 1.14 !important;
-    margin-top: .22rem !important;
+    font-size: .82rem !important;
+    line-height: 1.12 !important;
+    margin-top: .18rem !important;
   }
   #why-now [data-why-now-infographic] > div:nth-child(n+4):nth-child(-n+9) {
     overflow: hidden !important;
-    padding: .42rem .65rem !important;
+    padding: .34rem .6rem !important;
   }
   #why-now [data-why-now-infographic] > div:nth-child(n+10) p {
-    font-size: .82rem !important;
+    font-size: .8rem !important;
   }
 
   /* SECTION 03 — restore scale; the previous 155px panels were visibly over-compressed. */
@@ -188,59 +190,59 @@
   #segments > div > div:last-child p:first-child { font-size: 10px !important; }
   #segments > div > div:last-child p:last-child { font-size: 8.6px !important; }
 
-  /* SECTION 05 — fill the canvas again while retaining a safe footer margin. */
+  /* SECTION 05 — compact the workspace itself so Evidence & Tests rises and the lower callout clears navigation. */
   #as-is {
-    padding-top: .65rem !important;
-    padding-bottom: .4rem !important;
+    padding-top: .55rem !important;
+    padding-bottom: .3rem !important;
   }
   #as-is > div {
     height: 100%;
     display: flex;
     flex-direction: column;
   }
-  #as-is header > p:first-child { font-size: .78rem !important; }
+  #as-is header > p:first-child { font-size: .76rem !important; }
   #as-is header h2 {
-    margin-top: .15rem !important;
-    font-size: 2.3rem !important;
-    line-height: 1.02 !important;
+    margin-top: .12rem !important;
+    font-size: 2.2rem !important;
+    line-height: 1.01 !important;
   }
   #as-is header > p:last-child {
-    margin-top: .2rem !important;
-    font-size: .92rem !important;
-    line-height: 1.12 !important;
+    margin-top: .16rem !important;
+    font-size: .88rem !important;
+    line-height: 1.1 !important;
   }
   #as-is header + div {
-    margin-top: .5rem !important;
+    margin-top: .38rem !important;
   }
   #as-is header + div > div {
-    min-height: 38px !important;
-    padding-top: .4rem !important;
-    padding-bottom: .4rem !important;
+    min-height: 34px !important;
+    padding-top: .3rem !important;
+    padding-bottom: .3rem !important;
   }
   #as-is header + div + div {
-    margin-top: .35rem !important;
-    margin-bottom: .4rem !important;
+    margin-top: .24rem !important;
+    margin-bottom: .28rem !important;
   }
   #as-is .assessment-workspace-v2 {
-    height: 530px !important;
+    height: 470px !important;
     min-height: 0 !important;
-    flex: 0 0 530px !important;
+    flex: 0 0 470px !important;
   }
   #as-is .assessment-left-body-v2 svg {
-    height: 282px !important;
-    width: 282px !important;
+    height: 250px !important;
+    width: 250px !important;
   }
   #as-is .assessment-left-body-v2 ol {
-    gap: 2px !important;
+    gap: 1px !important;
   }
   #as-is .assessment-left-body-v2 ol button {
-    min-height: 28px !important;
-    padding-top: .2rem !important;
-    padding-bottom: .2rem !important;
+    min-height: 25px !important;
+    padding-top: .14rem !important;
+    padding-bottom: .14rem !important;
   }
   #as-is .assessment-workspace-v2 + div {
-    margin-top: .38rem !important;
-    padding-top: .38rem !important;
-    padding-bottom: .38rem !important;
+    margin-top: .22rem !important;
+    padding-top: .28rem !important;
+    padding-bottom: .28rem !important;
   }
 }
