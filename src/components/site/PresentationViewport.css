@@ -1,9 +1,10 @@
 /* Presentation viewport fit
-   The deck was designed on a taller desktop viewport. Corporate laptops often expose
-   ~850-900 CSS px even in full screen because of display scaling. Keep the slide
-   composition intact and scale only the dense presentation bodies, not the ribbons. */
+   Corporate laptops can expose a much smaller CSS viewport because of Windows display
+   scaling even when the panel resolution is high. Keep the slide composition intact and
+   scale the dense presentation bodies when the available presentation height is short.
+   The top and bottom ribbons remain full size. */
 
-@media (min-width: 1280px) {
+@media (min-width: 1024px) {
   #why-now,
   #segments,
   #plant-blocks,
@@ -23,17 +24,19 @@
   }
 }
 
-@media (min-width: 1280px) and (max-height: 900px) {
+/* EY / corporate-laptop fit. Use 1024px rather than 1280px because Windows display
+   scaling can reduce the effective CSS width below 1280px on a 1920px-class panel. */
+@media (min-width: 1024px) and (max-height: 950px) {
   #why-now > .s02-shell,
   #segments > div,
   #plant-blocks > div,
   #as-is > div {
-    transform: scale(0.92);
+    transform: scale(0.84);
     transform-origin: top center;
   }
 
   #why-now > .s02-shell {
-    height: calc(100% / 0.92) !important;
+    height: calc(100% / 0.84) !important;
   }
 
   #segments,
@@ -43,15 +46,15 @@
   }
 }
 
-@media (min-width: 1280px) and (max-height: 780px) {
+@media (min-width: 1024px) and (max-height: 800px) {
   #why-now > .s02-shell,
   #segments > div,
   #plant-blocks > div,
   #as-is > div {
-    transform: scale(0.86);
+    transform: scale(0.78);
   }
 
   #why-now > .s02-shell {
-    height: calc(100% / 0.86) !important;
+    height: calc(100% / 0.78) !important;
   }
 }
