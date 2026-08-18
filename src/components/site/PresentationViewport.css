@@ -1,10 +1,6 @@
-/* Presentation viewport fit
-   The EY corporate laptop uses the browser Fullscreen API. The previous transform-based
-   approach reduced the pixels but did not reduce the element's layout box, so the fixed
-   bottom presentation ribbon still covered the lower content. Chromium/Edge supports
-   CSS zoom, which changes both the visual size and the layout dimensions. Use it only
-   for the four dense slides that need the fit; keep the hero and navigation ribbons at
-   their approved size. */
+/* Deterministic presentation fit for the dense early slides.
+   Do not scale the whole deck. Reserve the measured top + bottom ribbons, then
+   compact only the intrinsic vertical geometry that was overflowing on the EY laptop. */
 
 @media (min-width: 1024px) {
   #why-now,
@@ -12,68 +8,88 @@
   #plant-blocks,
   #as-is {
     box-sizing: border-box;
+    height: calc(100dvh - var(--presentation-ribbon-height, 112px)) !important;
+    min-height: 0 !important;
     overflow: hidden;
   }
 
-  #why-now,
-  #segments,
-  #plant-blocks,
+  /* HERO — retain full image treatment, but pull the content safely above the fixed footer. */
+  #top > div.relative.mx-auto {
+    padding-top: 2rem !important;
+    padding-bottom: 1rem !important;
+  }
+  #top h1 { margin-top: 1.1rem !important; }
+  #top h1 + p { margin-top: 1rem !important; }
+  #top h1 + p + div { margin-top: 1.25rem !important; }
+  #top dl > div { min-height: 5.25rem !important; padding-top: .6rem !important; padding-bottom: .6rem !important; }
+
+  /* SECTION 02 — the centre infographic was overflowing its flex rows. */
+  #why-now > .s02-shell {
+    padding-top: .5rem !important;
+    padding-bottom: .5rem !important;
+  }
+  #why-now .s02-heading h2 {
+    font-size: 1.85rem !important;
+    line-height: 1.02 !important;
+  }
+  #why-now .s02-heading > header > p:first-child {
+    font-size: .72rem !important;
+    line-height: .9rem !important;
+  }
+  #why-now .s02-heading > header > p:last-child {
+    margin-top: .15rem !important;
+    font-size: .76rem !important;
+    line-height: 1rem !important;
+  }
+  #why-now .s02-workspace {
+    margin-top: .4rem !important;
+    gap: .55rem !important;
+  }
+  #why-now [data-why-now-infographic] {
+    grid-template-rows: 5.2rem minmax(0,1fr) minmax(0,1fr) 2.45rem !important;
+  }
+  #why-now [data-why-now-infographic] h3 { font-size: .92rem !important; line-height: 1 !important; }
+  #why-now [data-why-now-infographic] h4 { font-size: .82rem !important; line-height: 1.06 !important; }
+  #why-now [data-why-now-infographic] p { font-size: .76rem !important; line-height: 1.08 !important; margin-top: .18rem !important; }
+  #why-now [data-why-now-infographic] > div:nth-child(n+4):nth-child(-n+9) {
+    padding-left: .55rem !important;
+    padding-right: .55rem !important;
+    padding-top: .2rem !important;
+    padding-bottom: .2rem !important;
+  }
+
+  /* SECTION 03 — recover the target-state and contextual strip without scaling text. */
+  #segments {
+    padding-top: .55rem !important;
+    padding-bottom: .35rem !important;
+  }
+  #segments header h2 { font-size: 2.15rem !important; }
+  #segments header > p:last-child { font-size: .92rem !important; line-height: 1.12 !important; }
+  #segments .h-\[250px\] { height: 190px !important; }
+  #segments article > div { padding-top: .35rem !important; padding-bottom: .35rem !important; }
+  #segments article .mt-2 { margin-top: .35rem !important; }
+  #segments article .mt-1\.5 { margin-top: .3rem !important; }
+  #segments article .pt-1\.5 { padding-top: .3rem !important; }
+  #segments article .text-\[17px\] { font-size: 14px !important; }
+  #segments article .text-\[11\.5px\] { font-size: 10px !important; }
+  #segments article .text-\[10\.3px\] { font-size: 9px !important; line-height: 1.08 !important; }
+  #segments article .relative.mt-2 { margin-top: .25rem !important; padding-top: .35rem !important; padding-bottom: .35rem !important; }
+  #segments article .relative.mt-2 span.mt-2 { margin-top: .35rem !important; font-size: 8.5px !important; }
+  #segments > div > div:last-child { margin-top: .35rem !important; padding-top: .35rem !important; padding-bottom: .35rem !important; }
+
+  /* SECTION 05 — its workspace calculation omitted the fixed 52px presentation ribbon. */
   #as-is {
-    height: calc(100dvh - var(--presentation-ribbon-height, 112px)) !important;
-    min-height: 0 !important;
+    padding-top: .45rem !important;
+    padding-bottom: .35rem !important;
   }
-}
-
-/* Full-screen EY-laptop fit.
-   Width is expanded by the reciprocal of zoom so the rendered slide still fills the
-   horizontal presentation area while its layout height genuinely becomes shorter. */
-@media (min-width: 1024px) {
-  html:fullscreen #why-now > .s02-shell {
-    zoom: 0.70;
-    width: 142.857% !important;
-    max-width: none !important;
-    height: auto !important;
-    transform: none !important;
+  #as-is header h2 { font-size: 2.2rem !important; }
+  #as-is header > p:last-child { font-size: .9rem !important; line-height: 1.12 !important; }
+  #as-is .assessment-workspace-v2 {
+    --assessment-workspace-height: calc(100dvh - var(--presentation-ribbon-height, 112px) - 205px) !important;
   }
-
-  html:fullscreen #segments > div {
-    zoom: 0.70;
-    width: 142.857% !important;
-    max-width: none !important;
-    transform: none !important;
-  }
-
-  html:fullscreen #plant-blocks > div {
-    zoom: 0.74;
-    width: 135.135% !important;
-    max-width: none !important;
-    transform: none !important;
-  }
-
-  html:fullscreen #as-is > div {
-    zoom: 0.74;
-    width: 135.135% !important;
-    max-width: none !important;
-    transform: none !important;
-  }
-}
-
-/* Matching fallback outside Fullscreen API for short corporate-laptop browser windows. */
-@media (min-width: 1024px) and (max-height: 900px) {
-  html:not(:fullscreen) #why-now > .s02-shell,
-  html:not(:fullscreen) #segments > div {
-    zoom: 0.70;
-    width: 142.857% !important;
-    max-width: none !important;
-    height: auto !important;
-    transform: none !important;
-  }
-
-  html:not(:fullscreen) #plant-blocks > div,
-  html:not(:fullscreen) #as-is > div {
-    zoom: 0.74;
-    width: 135.135% !important;
-    max-width: none !important;
-    transform: none !important;
+  #as-is .assessment-workspace-v2 + div {
+    margin-top: .35rem !important;
+    padding-top: .35rem !important;
+    padding-bottom: .35rem !important;
   }
 }
