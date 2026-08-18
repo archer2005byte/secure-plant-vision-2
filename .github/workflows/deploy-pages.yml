@@ -48,7 +48,7 @@ jobs:
             v2/package-lock.json
 
       - name: Configure GitHub Pages
-        uses: actions/configure-pages@v5
+        uses: actions/configure-pages@v6
 
       - name: Build current site
         working-directory: current
